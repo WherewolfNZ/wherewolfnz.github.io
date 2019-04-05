@@ -304,11 +304,11 @@
         <div id="main-content" class="page-content" role="main">
           <p><strong>Flow of information</strong></p>
 
-<p>Wherewolf will regularly fetch a list of bookings for a time frame. This list is used to fill the list of expected guests for the day and to fill a calendar that helps with operations.</p>
+<p>Wherewolf will regularly fetch from the booking system API a list of bookings for a time frame. This list is used to fill the list of expected guests for the day and to fill a calendar that helps with operations. <a href="/docs/integrations/endpoints/bookings.html">Bookings endpoint</a>.</p>
 
-<p>When a booking is created or updated, the booking system provider will execute a Webhook call to Wherewolf notifying the action by providing a booking Id and a client identification. The intention of this call is to trigger nearly real time reactions that help minimise the regular calls needed to keep both systems in sync.</p>
+<p>When a booking is created or updated, the booking system provider will execute a Webhook call to Wherewolf notifying the action by providing a booking Id and a client identification. The intention of this call is to trigger nearly real time reactions that help minimise the regular calls needed to keep both systems in sync. <a href="/docs/integrations/webhooks/cache.html">Booking Created or Updated webhook</a>.</p>
 
-<p>Once a guest has finished the check-in process, Wherewolf will execute a Webhook call back to the booking system API in order to share the guest details captured by the check-in process.</p>
+<p>Once a guest has finished the check-in process, Wherewolf will execute a Webhook call back to the booking system API in order to share the guest details captured by the check-in process. <a href="/docs/integrations/webhooks/cache.html">Guest update endpoint</a>.</p>
 
 
 
