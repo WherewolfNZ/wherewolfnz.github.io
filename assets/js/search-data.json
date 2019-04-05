@@ -57,27 +57,34 @@
   },
   "8": {
     "id": "8",
+    "title": "Welcome",
+    "content": "This site contains technical information on how to interact with Wherewolf. If you are looking for help on how to setup your app, please use the Support Portal.",
+    "url": "/",
+    "relUrl": "/"
+  },
+  "9": {
+    "id": "9",
     "title": "Integrations",
     "content": "Booking systems integrations Wherewolf is currently integrated with all major booking systems, these integrations are made possible by the use of API and Webhook calls. This section outlines the workflow and requirements to successful integrate your booking system with Wherewolf. Glossary Client: the company using Wherefolf and the booking system to manage guest’s bookings and waivers. Guest: the final customer for who a booking is made. Booking: a reservation or booking made for an activity. Activity: is an activity, rental, service or product that can be booked by the guests.",
     "url": "/docs/integrations",
     "relUrl": "/docs/integrations"
   },
-  "9": {
-    "id": "9",
+  "10": {
+    "id": "10",
     "title": "Objectives",
     "content": "Objectives There are three main objectives when integrating your booking system with Wherewolf, being: Allow guests to online check-in or select their pre-filled bookings upon arrival. React to booking changes where amendments might be required before guest arrival. Send waivers or guest details back to the booking system after check-in is completed.",
     "url": "/docs/integrations/objectives.html",
     "relUrl": "/docs/integrations/objectives.html"
   },
-  "10": {
-    "id": "10",
+  "11": {
+    "id": "11",
     "title": "Requirements",
     "content": "Requests and format All exchange of data is made using JSON and standard HTTP requests to API endpoints. All datetimes are to be expressed in UTC. Your booking system should provide API key, to grant access to your booking system API. Client’s shortcode or Id that identifies one client from others inside the booking system. The endpoints described in Expected endpoints. The webhook calls described in Expected webhooks.",
     "url": "/docs/integrations/requirements.html",
     "relUrl": "/docs/integrations/requirements.html"
   },
-  "11": {
-    "id": "11",
+  "12": {
+    "id": "12",
     "title": "Expected webhooks",
     "content": "Expected Webhook calls Booking Created or Updated, all new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details.",
     "url": "/docs/integrations/webhooks.html",
