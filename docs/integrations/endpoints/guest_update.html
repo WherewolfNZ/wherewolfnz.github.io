@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Welcome - Wherewolf</title>
+  <title>Guest Update - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -32,7 +32,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/404.html" class="navigation-list-link"></a>
             
@@ -42,9 +42,9 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
-            <a href="/" class="navigation-list-link active">Welcome</a>
+            <a href="/" class="navigation-list-link">Welcome</a>
             
           </li>
         
@@ -72,7 +72,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/integrations" class="navigation-list-link">Integrations</a>
             
@@ -122,7 +122,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="/docs/integrations/endpoints.html" class="navigation-list-link">Expected endpoints</a>
                       
@@ -162,8 +162,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="/docs/integrations/endpoints/guest_update.html" class="navigation-list-link">Guest Update</a>
+                              <li class="navigation-list-item  active">
+                                <a href="/docs/integrations/endpoints/guest_update.html" class="navigation-list-link active">Guest Update</a>
                               </li>
                             
                           
@@ -290,8 +290,71 @@
       </div>
       <div class="main-content">
         
+          
+            <nav class="breadcrumb-nav">
+              <ol class="breadcrumb-nav-list">
+                
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Integrations</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations/endpoints.html">Expected endpoints</a></li>
+                
+                <li class="breadcrumb-nav-list-item"><span>Guest Update</span></li>
+              </ol>
+            </nav>
+          
+        
         <div id="main-content" class="page-content" role="main">
-          <p>Welcome.</p>
+          <p><strong>Guest Update endpoint</strong></p>
+
+<p>Accepts a <code class="highlighter-rouge">POST</code> and stores guest’s details as seen fit. The purpose of this call is to share the guest details that might be relevant.</p>
+
+<p>After a guest have signed a waiver, or after any other update is performed on a guest record. Wherewolf will execute a <code class="highlighter-rouge">POST</code> call to a Guest Update endpoint on the booking system API.</p>
+
+<p>Parameters (on path or query string):</p>
+<ul>
+  <li><code class="highlighter-rouge">bookingId</code> the booking id</li>
+  <li><code class="highlighter-rouge">guestId</code> the guest id provided originally with the booking details (if available)</li>
+</ul>
+
+<p>Headers:</p>
+<ul>
+  <li><code class="highlighter-rouge">API-key</code> API key to allow the request.</li>
+</ul>
+
+<p>Body:</p>
+<ul>
+  <li><code class="highlighter-rouge">remoteId</code> the guest id provided originally with the booking details (if available)</li>
+  <li><code class="highlighter-rouge">wherewolfGuestId</code> the Wherewolf guest id, will be unique across all guests.</li>
+  <li><code class="highlighter-rouge">reservationsID</code> the booking id.</li>
+  <li><code class="highlighter-rouge">name</code> full name of the guest.</li>
+  <li><code class="highlighter-rouge">email</code> email address.</li>
+  <li><code class="highlighter-rouge">lastVisit</code> the date and time of the activity/activities the guest is checking-in. UTC ISO 8601.</li>
+  <li><code class="highlighter-rouge">status</code> indicates the current guest status. Checked In, Active, Deleted, Ineligible.</li>
+</ul>
+
+<p>Other properties:
+The process of check-in might capture other details from the guest, such as “Where did you hear about us”, all other captured properties will be also included in the request body <code class="highlighter-rouge">whereDidYouHearAboutUs: "Facebook"</code></p>
+
+<p>Request example</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST \
+  https://yourbookingservice.net/api/bookings/ABC123/guests/G333 \
+  -H 'Content-Type: application/json' \
+  -H 'API-key: 123-123-123-123' \ 
+  -d '{
+        "remoteId": "G333",
+        "wherewolfGuestId": "abcdefg1234567890",
+        "reservationsID": "ABC123",
+        "name": "John Smith",
+        "email": "jsmith@email.net",
+        "lastVisit": "2018-01-27T11:27:00",
+        "status": "Checked In",
+    }'
+</code></pre></div></div>
+
+<p>Response example</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 
 

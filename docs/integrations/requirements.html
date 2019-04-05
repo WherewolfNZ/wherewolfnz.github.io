@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Welcome - Wherewolf</title>
+  <title>Requirements - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -42,9 +42,9 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
-            <a href="/" class="navigation-list-link active">Welcome</a>
+            <a href="/" class="navigation-list-link">Welcome</a>
             
           </li>
         
@@ -72,7 +72,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/integrations" class="navigation-list-link">Integrations</a>
             
@@ -114,9 +114,9 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
-                      <a href="/docs/integrations/requirements.html" class="navigation-list-link">Requirements</a>
+                      <a href="/docs/integrations/requirements.html" class="navigation-list-link active">Requirements</a>
                       
                     </li>
                   
@@ -290,8 +290,29 @@
       </div>
       <div class="main-content">
         
+          
+            <nav class="breadcrumb-nav">
+              <ol class="breadcrumb-nav-list">
+                
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Integrations</a></li>
+                
+                <li class="breadcrumb-nav-list-item"><span>Requirements</span></li>
+              </ol>
+            </nav>
+          
+        
         <div id="main-content" class="page-content" role="main">
-          <p>Welcome.</p>
+          <p>Requests and format:</p>
+<ul>
+  <li>All exchange of data is made using JSON and standard HTTP requests to API endpoints.</li>
+  <li>All datetimes are to be expressed in UTC.</li>
+</ul>
+
+<p>Your booking system should provide:</p>
+<ul>
+  <li>API key, to grant access to your booking system API.</li>
+  <li>Client’s shortcode or Id that identifies one client from others inside the booking system.</li>
+</ul>
 
 
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Welcome - Wherewolf</title>
+  <title>Booking Created or Updated - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -32,7 +32,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/404.html" class="navigation-list-link"></a>
             
@@ -42,9 +42,9 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
-            <a href="/" class="navigation-list-link active">Welcome</a>
+            <a href="/" class="navigation-list-link">Welcome</a>
             
           </li>
         
@@ -72,7 +72,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/integrations" class="navigation-list-link">Integrations</a>
             
@@ -179,7 +179,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="/docs/integrations/webhooks.html" class="navigation-list-link">Expected webhooks</a>
                       
@@ -193,8 +193,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="/docs/integrations/webhooks/cache.html" class="navigation-list-link">Booking Created or Updated</a>
+                              <li class="navigation-list-item  active">
+                                <a href="/docs/integrations/webhooks/cache.html" class="navigation-list-link active">Booking Created or Updated</a>
                               </li>
                             
                           
@@ -290,8 +290,59 @@
       </div>
       <div class="main-content">
         
+          
+            <nav class="breadcrumb-nav">
+              <ol class="breadcrumb-nav-list">
+                
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Integrations</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations/webhooks.html">Expected webhooks</a></li>
+                
+                <li class="breadcrumb-nav-list-item"><span>Booking Created or Updated</span></li>
+              </ol>
+            </nav>
+          
+        
         <div id="main-content" class="page-content" role="main">
-          <p>Welcome.</p>
+          <p><strong>Booking Created or Updated Webhook</strong></p>
+
+<p>All new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details.</p>
+
+<p>Parameters:</p>
+<ul>
+  <li><code class="highlighter-rouge">client</code> string to identify the client from which the activities are being required.</li>
+  <li><code class="highlighter-rouge">skip</code> integer to indicate how many records are to be skipped.</li>
+</ul>
+
+<p>Headers:</p>
+<ul>
+  <li><code class="highlighter-rouge">Content-Type: application/json'</code> required to indicate the body structure.</li>
+</ul>
+
+<p>Body:</p>
+<ul>
+  <li><code class="highlighter-rouge">bookingId</code> id to indicate the booking to be fetched.</li>
+  <li><code class="highlighter-rouge">name</code> username provided by Wherewolf.</li>
+  <li><code class="highlighter-rouge">key</code> API key provided by Wherewolf.</li>
+  <li><code class="highlighter-rouge">pool</code> string to identify the client.</li>
+</ul>
+
+<p>Request example</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST \
+  https://api.wherewolf.co.nz/integrations/cache \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "bookingId": "ABC123",
+        "name": "user_name_provided_by_wherewolf",
+        "key": "api_key_provided_by_wherewolf",
+        "pool": "wherewolf_client_identifier"
+}'
+</code></pre></div></div>
+
+<p>Response example</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 
 
