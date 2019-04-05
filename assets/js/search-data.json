@@ -65,7 +65,7 @@
   "9": {
     "id": "9",
     "title": "Integrations",
-    "content": "Booking systems integrations Wherewolf is currently integrated with all major booking systems, these integrations are made possible by the use of API and Webhook calls. This section outlines the workflow and requirements to successful integrate your booking system with Wherewolf. Glossary Client: the company using Wherefolf and the booking system to manage guest’s bookings and waivers. Guest: the final customer for who a booking is made. Booking: a reservation or booking made for an activity. Activity: is an activity, rental, service or product that can be booked by the guests.",
+    "content": "Booking systems integrations Wherewolf is currently integrated with all major booking systems, these integrations are made possible by the use of API and Webhook calls. This section outlines the workflow and requirements to successful integrate your booking system with Wherewolf. Glossary Client: the company using Wherewolf and the booking system to manage guest’s bookings and waivers. Guest: the final customer for who a booking is made. Booking: a reservation or booking made for an activity. Activity: is an activity, rental, service or product that can be booked by the guests.",
     "url": "/docs/integrations",
     "relUrl": "/docs/integrations"
   },
