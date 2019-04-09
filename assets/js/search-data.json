@@ -72,7 +72,7 @@
   "10": {
     "id": "10",
     "title": "Objectives",
-    "content": "Objectives There are three main objectives when integrating your booking system with Wherewolf, being: Obtain guest data submitted in the booking process in order to avoid repetition by “pre-filling” waiver questions and speeding up the check-in. Use guest email address (supplied in the booking) to automatically send a pre-arrival link email to the guest, allowing waiver completion prior to arrival (speeding up onsite check-in, reducing queues and improving guest convenience). React to booking changes where amendments might be required before guest arrival. Send waivers or guest details back to the booking system after check-in is completed (AKA 2-way integration).",
+    "content": "Objectives There are three main objectives when integrating your booking system with Wherewolf, being: Obtain guest data submitted in the booking process in order to avoid repetition by “pre-filling” waiver questions and speeding up the check-in. Use guest email address (supplied in the booking) to automatically send a pre-arrival link email to the guest, allowing waiver completion prior to arrival (speeding up onsite check-in, reducing queues and improving guest convenience). React to booking changes where amendments might be required before guest arrival. Send waivers or guest details back to the booking system after check-in is completed (2-way integration).",
     "url": "/docs/integrations/objectives.html",
     "relUrl": "/docs/integrations/objectives.html"
   },
