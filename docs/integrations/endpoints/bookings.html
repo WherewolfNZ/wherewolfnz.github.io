@@ -313,7 +313,7 @@
 <p>The response is expected to return an object containing at least two properties:</p>
 <ul>
   <li><code class="highlighter-rouge">bookings</code> an array of booking objects, where each object should at least contain a reference to the booking id.</li>
-  <li><code class="highlighter-rouge">last</code> a boolean flag to indicate if all bookings have been returned of if a pagination is in place. When set to false, Wherewolf will execute a subsequent call with <code class="highlighter-rouge">skip</code> set to be the number of already retrieved booking ids <code class="highlighter-rouge">skip += bookings.length</code>.</li>
+  <li><code class="highlighter-rouge">last</code> a boolean flag to indicate if all bookings have been returned or if a pagination is in place. When set to false, Wherewolf will execute a subsequent call with <code class="highlighter-rouge">skip</code> set to be the number of already retrieved booking id’s <code class="highlighter-rouge">skip += bookings.length</code>.</li>
 </ul>
 
 <p>Response example</p>
