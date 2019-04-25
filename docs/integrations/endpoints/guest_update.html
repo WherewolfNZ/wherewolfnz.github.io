@@ -289,7 +289,7 @@
         <div id="main-content" class="page-content" role="main">
           <p><strong>Guest Update endpoint</strong></p>
 
-<p>Accepts a <code class="highlighter-rouge">POST</code> and stores guest’s details as seen fit. The purpose of this call is to share the guest details that might be relevant.</p>
+<p>Accepts a <code class="highlighter-rouge">POST</code> call and stores guest’s details as seen fit. Wherewolf will call this endpoint to share the details and status of the guest, this allows your system to store guest details and know if a waiver has been signed.</p>
 
 <p>After a guest have signed a waiver, or after any other update is performed on a guest record. Wherewolf will execute a <code class="highlighter-rouge">POST</code> call to a Guest Update endpoint on the booking system API.</p>
 
