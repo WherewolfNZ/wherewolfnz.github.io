@@ -291,6 +291,8 @@
 
 <p>Returns a list of bookings for a given time period and specified client.</p>
 
+<p><strong>Note:</strong> the returned list is expected to contain all bookings in any of the recognised statuses: Active (confirmed), Pending (unpaid or partially paid), Deleted (cancelled) or Rebooked (cancelled but linked to a new one).</p>
+
 <p>Parameters:</p>
 <ul>
   <li><code class="highlighter-rouge">client</code> string to identify the client from which the bookings are being required.</li>
@@ -306,7 +308,7 @@
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET \
-  https://yourservice.net/api/bookings?client=clientcode123&amp;fromDate=2018-01-01T00:00:00&amp;toDate=2018-01-14T23:59:59&amp;skip=0 \
+  https://yourservice.net/api/bookings?client=clientcode123&amp;fromDate=2018-01-01T00:00:00.000Z&amp;toDate=2018-01-14T23:59:59.000Z&amp;skip=0 \
   -H 'API-key: 123-123-123-123'
 </code></pre></div></div>
 
