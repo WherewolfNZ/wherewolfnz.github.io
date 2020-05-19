@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Objectives - Wherewolf</title>
+  <title>Public API - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -80,7 +80,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/docs/integrations" class="navigation-list-link">Booking Systems Integrations</a>
             
@@ -96,9 +96,9 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
-                      <a href="/docs/integrations/objectives.html" class="navigation-list-link active">Objectives</a>
+                      <a href="/docs/integrations/objectives.html" class="navigation-list-link">Objectives</a>
                       
                     </li>
                   
@@ -318,9 +318,9 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
-            <a href="/docs/api" class="navigation-list-link">Public API</a>
+            <a href="/docs/api" class="navigation-list-link active">Public API</a>
             
               
               <ul class="navigation-list-child-list ">
@@ -417,29 +417,83 @@
       <div class="main-content">
         
           
-            <nav class="breadcrumb-nav">
-              <ol class="breadcrumb-nav-list">
-                
-                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Booking Systems Integrations</a></li>
-                
-                <li class="breadcrumb-nav-list-item"><span>Objectives</span></li>
-              </ol>
-            </nav>
-          
         
         <div id="main-content" class="page-content" role="main">
-          <p><strong>Objectives</strong></p>
+          <p><strong>Public API</strong></p>
 
-<p>There are three main objectives when integrating your booking system with Wherewolf, being:</p>
+<p>Clients have access to Wherewolf’s API</p>
+
+<p><strong>Some Considerations</strong></p>
+
 <ul>
-  <li>Obtain guest data submitted in the booking process in order to avoid repetition by “pre-filling” waiver questions and speeding up the check-in.</li>
-  <li>Use guest email address (supplied in the booking) to automatically send a pre-arrival link email to the guest, allowing waiver completion prior to arrival (speeding up onsite check-in, reducing queues and improving guest convenience).</li>
-  <li>React to booking changes where amendments might be required before guest arrival.</li>
-  <li>Send waivers or guest details back to the booking system after check-in is completed (2-way integration).</li>
+  <li>The Wherewolf API is a RESTful JSON API.</li>
+  <li>All API calls should be made with HTTP POST.</li>
+  <li>You can consider any non-200 HTTP response code an error - the returned data will contain more detailed information</li>
+  <li>All methods are accessed via: <code class="highlighter-rouge">https://api.wherewolf.co.nz/SECTION/SOME-METHOD</code></li>
+  <li>Request data is passed to the API by POSTing JSON objects to the API endpoints with the appropriate parameters. The documentation for each API call will contain more detail on the parameters accepted by the call.</li>
+  <li>HTTPS is 100% supported with valid, signed certificates for all API methods. Only HTTPS over 443 is accepted.</li>
 </ul>
 
 
 
+
+          
+          <hr>
+          <h2 class="text-delta">Table of contents</h2>
+          
+          <ul>
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+              <li>
+                <a href="/docs/api/obtaining_API_key.html">Obtaining API Key</a>
+              </li>
+              
+            
+              
+            
+              
+              <li>
+                <a href="/docs/api/endpoints.html">Available Endpoints</a>
+              </li>
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+          </ul>
           
         </div>
       </div>

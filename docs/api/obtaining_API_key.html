@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Objectives - Wherewolf</title>
+  <title>Obtaining API Key - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -80,7 +80,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/docs/integrations" class="navigation-list-link">Booking Systems Integrations</a>
             
@@ -96,9 +96,9 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
-                      <a href="/docs/integrations/objectives.html" class="navigation-list-link active">Objectives</a>
+                      <a href="/docs/integrations/objectives.html" class="navigation-list-link">Objectives</a>
                       
                     </li>
                   
@@ -318,7 +318,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/api" class="navigation-list-link">Public API</a>
             
@@ -336,9 +336,9 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
-                      <a href="/docs/api/obtaining_API_key.html" class="navigation-list-link">Obtaining API Key</a>
+                      <a href="/docs/api/obtaining_API_key.html" class="navigation-list-link active">Obtaining API Key</a>
                       
                     </li>
                   
@@ -420,23 +420,66 @@
             <nav class="breadcrumb-nav">
               <ol class="breadcrumb-nav-list">
                 
-                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Booking Systems Integrations</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/api">Public API</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Objectives</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Obtaining API Key</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <p><strong>Objectives</strong></p>
+          <p><strong>Obtaining an API Key and Pool</strong></p>
 
-<p>There are three main objectives when integrating your booking system with Wherewolf, being:</p>
-<ul>
-  <li>Obtain guest data submitted in the booking process in order to avoid repetition by “pre-filling” waiver questions and speeding up the check-in.</li>
-  <li>Use guest email address (supplied in the booking) to automatically send a pre-arrival link email to the guest, allowing waiver completion prior to arrival (speeding up onsite check-in, reducing queues and improving guest convenience).</li>
-  <li>React to booking changes where amendments might be required before guest arrival.</li>
-  <li>Send waivers or guest details back to the booking system after check-in is completed (2-way integration).</li>
-</ul>
+<p>To interact with the API you will need to first get an API <code class="highlighter-rouge">key</code> and a <code class="highlighter-rouge">pool</code> reference.</p>
+
+<p>The API key is used alongside <code class="highlighter-rouge">username</code> as a replacement for the password.</p>
+
+<p>The <code class="highlighter-rouge">pool</code> indicates the target Wherewolf app for your requests.</p>
+
+<p>Get the API <code class="highlighter-rouge">key</code> and <code class="highlighter-rouge">pool</code> for your user by using the <code class="highlighter-rouge">/user/login</code> endpoint.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST \
+  https://api.wherewolf.co.nz/user/login \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "user": "your_user_name",
+  "pass": "your_password"
+}'
+</code></pre></div></div>
+
+<p>The response will then contain details about your user and the Wherewolf app(s) linked to it.</p>
+
+<p>Inside the returned object, you will find the properties <code class="highlighter-rouge">key</code> and <code class="highlighter-rouge">pool</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {
+    ...
+    "key": "___API___KEY___HERE___",
+    "pool": "___POOL___HERE___",
+    ...
+  }
+</code></pre></div></div>
+
+<p><strong>Multiple Apps?</strong>
+If your user is granted with access to multiple apps, you will find a list of these inside <code class="highlighter-rouge">poolsAvailableComplete</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  {
+    ...
+    "key": "___API___KEY___HERE___",
+    "pool": "___DEFAULT___POOL___HERE___",
+    ...
+    "poolsAvailableComplete": [
+        {
+          "pool": "ABC123",
+          "poolName": "One App"
+        },
+        {
+          "pool": "ABC123",
+          "poolName": "Another App"
+        }
+    ...
+  }
+</code></pre></div></div>
 
 
 
