@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Activities - Wherewolf</title>
+  <title>Example Call - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -32,7 +32,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/404.html" class="navigation-list-link"></a>
             
@@ -84,7 +84,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/docs/integrations" class="navigation-list-link">Booking Systems Integrations</a>
             
@@ -146,7 +146,7 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
                       <a href="/docs/integrations/endpoints.html" class="navigation-list-link">Expected endpoints</a>
                       
@@ -186,8 +186,8 @@
                             
                           
                             
-                              <li class="navigation-list-item  active">
-                                <a href="/docs/integrations/endpoints/activities.html" class="navigation-list-link active">Activities</a>
+                              <li class="navigation-list-item ">
+                                <a href="/docs/integrations/endpoints/activities.html" class="navigation-list-link">Activities</a>
                               </li>
                             
                           
@@ -299,7 +299,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/webhooks" class="navigation-list-link">Webhooks</a>
             
@@ -315,9 +315,9 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
-                      <a href="/docs/webhooks/example_call.html" class="navigation-list-link">Example Call</a>
+                      <a href="/docs/webhooks/example_call.html" class="navigation-list-link active">Example Call</a>
                       
                     </li>
                   
@@ -480,52 +480,18 @@
             <nav class="breadcrumb-nav">
               <ol class="breadcrumb-nav-list">
                 
-                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Booking Systems Integrations</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations/endpoints.html">Expected endpoints</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/webhooks">Webhooks</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Activities</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Example Call</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <p><strong>Get Activities endpoint</strong></p>
+          <p><strong>Example Call</strong></p>
 
-<p>Returns all activities that could be used on bookings.</p>
-
-<p>Parameters:</p>
-<ul>
-  <li><code class="highlighter-rouge">client</code> string to identify the client from which the activities are being required.</li>
-  <li><code class="highlighter-rouge">skip</code> integer to indicate how many records are to be skipped.</li>
-</ul>
-
-<p>Headers:</p>
-<ul>
-  <li><code class="highlighter-rouge">API-key</code> API key to allow the request.</li>
-</ul>
-
-<p>Request example</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET \
-  https://yourservice.net/api/activities?client=clientcode123&amp;skip=0 \
-  -H 'API-key: 123-123-123-123'
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
 </code></pre></div></div>
-
-<p>The response is expected to return an object containing at least two properties:</p>
-<ul>
-  <li><code class="highlighter-rouge">activities</code> an array of activity objects, where each object should at least contain the name of the activity and it’s internal id or code.</li>
-  <li><code class="highlighter-rouge">last</code> a boolean flag to indicate if all activities have been returned of if a pagination is in place. When set to false, Wherewolf will execute a subsequent call with <code class="highlighter-rouge">skip</code> set to be the number of already retrieved activities <code class="highlighter-rouge">skip += activities.length</code>.</li>
-</ul>
-
-<p>Response example</p>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"activities"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w"> </span><span class="s2">"activityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SWIM123"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Swim"</span><span class="w"> </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w"> </span><span class="s2">"activityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIVE1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dive"</span><span class="w"> </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w"> </span><span class="s2">"activityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JMP"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jump"</span><span class="w"> </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
 
 
 

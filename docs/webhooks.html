@@ -80,12 +80,18 @@
     
       
         
+      
+    
+      
+        
           <li class="navigation-list-item">
             
             <a href="/docs/integrations" class="navigation-list-link">Booking Systems Integrations</a>
             
               
               <ul class="navigation-list-child-list ">
+                
+                  
                 
                   
                 
@@ -115,6 +121,10 @@
                       <a href="/docs/integrations/flow.html" class="navigation-list-link">Flow of information</a>
                       
                     </li>
+                  
+                
+                  
+                
                   
                 
                   
@@ -160,6 +170,8 @@
                             
                           
                             
+                          
+                            
                               <li class="navigation-list-item ">
                                 <a href="/docs/integrations/endpoints/booking_details.html" class="navigation-list-link">Booking details</a>
                               </li>
@@ -172,9 +184,13 @@
                             
                           
                             
+                          
+                            
                               <li class="navigation-list-item ">
                                 <a href="/docs/integrations/endpoints/activities.html" class="navigation-list-link">Activities</a>
                               </li>
+                            
+                          
                             
                           
                             
@@ -244,6 +260,12 @@
                           
                             
                           
+                            
+                          
+                            
+                          
+                            
+                          
                         </ul>
                       
                     </li>
@@ -252,6 +274,14 @@
               </ul>
             
           </li>
+        
+      
+    
+      
+        
+      
+    
+      
         
       
     
@@ -285,7 +315,11 @@
                   
                 
                   
-                
+                    <li class="navigation-list-item ">
+                      
+                      <a href="/docs/webhooks/example_call.html" class="navigation-list-link">Example Call</a>
+                      
+                    </li>
                   
                 
                   
@@ -296,6 +330,26 @@
                 
                   
                 
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="/docs/webhooks/payload.html" class="navigation-list-link">Payload Details</a>
+                      
+                    </li>
+                  
+                
+                  
+                
+                  
+                    <li class="navigation-list-item ">
+                      
+                      <a href="/docs/webhooks/authentication.html" class="navigation-list-link">Authentication Options</a>
+                      
+                    </li>
                   
                 
                   
@@ -336,6 +390,8 @@
                   
                 
                   
+                
+                  
                     <li class="navigation-list-item ">
                       
                       <a href="/docs/api/obtaining_API_key.html" class="navigation-list-link">Obtaining API Key</a>
@@ -351,6 +407,10 @@
                       <a href="/docs/api/endpoints.html" class="navigation-list-link">Available Endpoints</a>
                       
                     </li>
+                  
+                
+                  
+                
                   
                 
                   
@@ -421,8 +481,17 @@
         <div id="main-content" class="page-content" role="main">
           <p><strong>Webhooks</strong></p>
 
-<p>Webhook calls can be configured when real time details from guests must be sent to an external service.</p>
+<p>Wherewolf apps can be configured to issue webhook requests to external services.</p>
 
+<p>When enabled, a request will be issued every time a guest record is created or updated.</p>
+
+<p>A guest record is <code class="highlighter-rouge">created</code> every time a guest signs a waiver.</p>
+
+<p>A guest record is <code class="highlighter-rouge">updated</code> if the check-in process happens in multiple stages and/or when a staff member perform some action on it such as assign some equipment or place some internal note.</p>
+
+<p><strong>Requirements</strong></p>
+
+<p>You need to provide an <code class="highlighter-rouge">url</code> that accepts a <code class="highlighter-rouge">POST</code> request with <code class="highlighter-rouge">Content-Type: application/json</code></p>
 
 
 
@@ -449,7 +518,9 @@
               
             
               
-            
+              <li>
+                <a href="/docs/webhooks/example_call.html">Example Call</a>
+              </li>
               
             
               
@@ -460,6 +531,22 @@
             
               
             
+              
+            
+              
+            
+              
+              <li>
+                <a href="/docs/webhooks/payload.html">Payload Details</a>
+              </li>
+              
+            
+              
+            
+              
+              <li>
+                <a href="/docs/webhooks/authentication.html">Authentication Options</a>
+              </li>
               
             
               
