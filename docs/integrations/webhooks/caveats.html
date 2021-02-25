@@ -547,7 +547,7 @@ From previous experiences, this added complexity is in general not worth it.</p>
     <p>Back-fills, when integrating new clients Wherewolf needs to retrieve any already made booking for the near future (commonly one year). Booking systems could expose an endpoint to allow Wherewolf to trigger webhooks for all bookings with future dates, but this does not provide any way to control the flood of calls that a big client could cause.</p>
   </li>
   <li>
-    <p>There is no way for Wherewolf to know if there were update calls that never arrived, at the end of the day Wherewolf is responsible on what is being displayed in the iPad at location, and is this the reason why (depending on the integration type) Wherewolf will re-fetch the booking details for the current day (or beyond) on intervals despite the use of webhook calls.</p>
+    <p>There is no way for Wherewolf to know if there were update calls that never arrived, at the end of the day Wherewolf is responsible on what is being displayed in the iPad at location, and is this the reason why (depending on the integration type) Wherewolf will re-fetch the booking details for the current day (or beyond) on well spaced intervals to ensure consistency against webhook calls.</p>
   </li>
 </ul>
 
