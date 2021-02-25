@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title> - Wherewolf</title>
+  <title>Known caveats and notes - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -32,9 +32,9 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
-            <a href="/404.html" class="navigation-list-link active"></a>
+            <a href="/404.html" class="navigation-list-link"></a>
             
           </li>
         
@@ -88,7 +88,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/integrations" class="navigation-list-link">Booking Systems Integrations</a>
             
@@ -227,7 +227,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="/docs/integrations/webhooks.html" class="navigation-list-link">Expected webhooks</a>
                       
@@ -255,8 +255,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="/docs/integrations/webhooks/caveats.html" class="navigation-list-link">Known caveats and notes</a>
+                              <li class="navigation-list-item  active">
+                                <a href="/docs/integrations/webhooks/caveats.html" class="navigation-list-link active">Known caveats and notes</a>
                               </li>
                             
                           
@@ -515,28 +515,43 @@
       <div class="main-content">
         
           
+            <nav class="breadcrumb-nav">
+              <ol class="breadcrumb-nav-list">
+                
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Booking Systems Integrations</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations/webhooks.html">Expected webhooks</a></li>
+                
+                <li class="breadcrumb-nav-list-item"><span>Known caveats and notes</span></li>
+              </ol>
+            </nav>
+          
         
         <div id="main-content" class="page-content" role="main">
-          <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
+          <p><strong>Known caveats and notes</strong></p>
 
-<div class="container">
-  <h1>404</h1>
+<p>A common question we receive from booking systems willing to integrate with Wherewolf is:</p>
 
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<blockquote>
+  <p>Why Wherewolf requires a booking details API endpoint if all the booking information could be sent over within the webhook call</p>
+</blockquote>
+
+<p>Wherewolf hesitance on relying only on webhook calls comes from previous experiences that resulted in extra work required, mainly:</p>
+
+<ul>
+  <li>
+    <p>Booking systems will queue the update calls (so these can be re issued if/when failed), calls from these queues can get out of order and/or arrive at the same time (specially for systems where the order is confirm in a 1st step and details are optionally added in subsequent steps).
+Storing a provided booking update timestamp and ignoring calls with older timestamps is a common solution for this scenario when you can ensure calls are arriving one after another, but when calls arrive at the same time to Wherewolf they get assigned to different workers and processed at the same time. Therefore each individual process can’t rely on the timestamp alone anymore causing the need for locks, and a buffer/queue to ensure only one update is executed at any given time.
+From previous experiences, this added complexity is in general not worth it.</p>
+  </li>
+  <li>
+    <p>Back-fills, when integrating new clients Wherewolf needs to retrieve any already made booking for the near future (commonly one year). Booking systems could expose an endpoint to allow Wherewolf to trigger webhooks for all bookings with future dates, but this does not provide any way to control the flood of calls that a big client could cause.</p>
+  </li>
+  <li>
+    <p>There is no way for Wherewolf to know if there were update calls that never arrived, at the end of the day Wherewolf is responsible on what is being displayed in the iPad at location, and is this the reason why (depending on the integration type) Wherewolf will re-fetch the booking details for the current day (or beyond) on intervals despite the use of webhook calls.</p>
+  </li>
+</ul>
+
+
 
 
           
