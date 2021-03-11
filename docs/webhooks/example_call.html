@@ -534,10 +534,31 @@
   -H '__CUSTOM_AUTH_FIELD__: __CUSTOM_AUTH_VALUE__' \
   -d '{
     guest: { 
-        ... guest properties ... 
+        "activities": [
+              "PJAX10"
+            ],
+        "createdAt": "2019-01-21T22:08:03.969Z",
+        "currentPage": null,
+        "DOB": "1986-03-14",
+        "email": "winston@wherewolf.co.nz",
+        "feedback": "Great thx",
+        "lastVisit": "2019-01-21T22:08:03.899Z",
+        "name": "Winston O'Connor",
+        "pool": "demo",
+        "status": "Active",
+        "TMP_id": "Dummy9gyrk55an4qi0ds54ck1",
+        "updatedAt": "2019-01-21T22:08:03.970Z",
+        "reservationsID": null,
+        "reservationsService": "bookeo"
     },
   }'
 </code></pre></div></div>
+
+<p>Where:</p>
+<ul>
+  <li><code class="highlighter-rouge">__YOUR_URL__</code> is the url of the endpoint you created to receive calls.</li>
+  <li><code class="highlighter-rouge">__CUSTOM_AUTH_FIELD__</code> and <code class="highlighter-rouge">__CUSTOM_AUTH_VALUE__</code> are values we can set if you require a special header.</li>
+</ul>
 
 <p><strong>Example Payload</strong></p>
 
@@ -548,13 +569,11 @@
     ],
     "createdAt": "2019-01-21T22:08:03.969Z",
     "currentPage": null,
-    "DOB": "1986-03-14",
     "email": "winston@wherewolf.co.nz",
     "feedback": "Great thx",
     "lastVisit": "2019-01-21T22:08:03.899Z",
     "name": "Winston O'Connor",
     "pool": "demo",
-    "signature": "data:image/png;base64...",
     "status": "Active",
     "TMP_id": "Dummy9gyrk55an4qi0ds54ck1",
     "updatedAt": "2019-01-21T22:08:03.970Z",
@@ -564,7 +583,7 @@
 }
 </code></pre></div></div>
 
-<p>Many other properties might be included in the guest object depending on webhook configuration and the available fields for the Wherewolf app.</p>
+<p>Many other properties may be present in the guest object depending on webhook configuration and the available fields for the Wherewolf app.</p>
 
 
 

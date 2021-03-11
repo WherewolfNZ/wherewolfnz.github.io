@@ -548,9 +548,10 @@
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET \
-  https://yourservice.net/api/bookings?client=clientcode123&amp;fromDate=2018-01-01T00:00:00.000Z&amp;toDate=2018-01-14T23:59:59.000Z&amp;skip=0 \
+  __BOOKING_SYSTEM_API__/bookings?client=clientcode123&amp;fromDate=2018-01-01T00:00:00.000Z&amp;toDate=2018-01-14T23:59:59.000Z&amp;skip=0 \
   -H 'API-key: 123-123-123-123'
 </code></pre></div></div>
+<p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API</em></p>
 
 <p>The response is expected to return an object containing at least two properties:</p>
 <ul>
