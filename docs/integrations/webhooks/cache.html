@@ -541,7 +541,6 @@
 <p>Body:</p>
 <ul>
   <li><code class="highlighter-rouge">bookingId</code> id to indicate the booking to be fetched.</li>
-  <li><code class="highlighter-rouge">name</code> username provided by Wherewolf.</li>
   <li><code class="highlighter-rouge">key</code> API key provided by Wherewolf.</li>
   <li><code class="highlighter-rouge">pool</code> string to identify the client.</li>
 </ul>
@@ -552,7 +551,6 @@
   -H 'Content-Type: application/json' \
   -d '{
         "bookingId": "ABC123",
-        "name": "user_name_provided_by_wherewolf",
         "key": "api_key_provided_by_wherewolf",
         "pool": "wherewolf_client_identifier"
 }'
