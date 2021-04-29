@@ -99,62 +99,69 @@
   },
   "14": {
     "id": "14",
+    "title": "Healthcheck & Credentials validation",
+    "content": "Healthcheck &amp; Credentials validation To ensure a Wherewolf app has been correctly configured to access your booking system API, an endpoint to validate the access key and company details must be provided. Parameters: client string to identify the client to validate. Headers: API-key API key to allow the request. Request example curl -X GET __BOOKING_SYSTEM_API__/healthcheck?client=clientcode123 -H &#39;API-key: 123-123-123-123&#39; Where BOOKING_SYSTEM_API is a placeholder for the base url of your booking system’s API The response should return a 401 when the provided API key does not have access to the requested client. And it should return an object containing the following client properties when access is valid: companyName The name of the client company. Example: Wherewolf Adventures. timezone the timezone on which the client company operates. Example: Pacific/Auckland. Important! The timezone your booking system API returns in this health check is only to validate Wherewolf and your systems are configured in the same way. All booking dates MUST be expressed in UTC. The timezone returned in this endpoint DOES NOT have any effects on booking dates. Response example { &quot;companyName&quot;: &quot;Wherewolf Adventures&quot;, &quot;timezone&quot;: &quot;Pacific/Auckland&quot; }",
+    "url": "/docs/integrations/endpoints/healthcheck.html",
+    "relUrl": "/docs/integrations/endpoints/healthcheck.html"
+  },
+  "15": {
+    "id": "15",
     "title": "Welcome",
     "content": "This site contains technical information on how to interact with Wherewolf. If you are looking for help on how to setup your app, please use the Support Portal.",
     "url": "/",
     "relUrl": "/"
   },
-  "15": {
-    "id": "15",
+  "16": {
+    "id": "16",
     "title": "Booking Systems Integrations",
     "content": "Booking systems integrations Wherewolf is currently integrated with major booking systems, these integrations are made possible by the use of API and Webhook calls. This section outlines the workflow and requirements to successful integrate your booking system with Wherewolf using API and Webhook calls. Glossary Client: the company using Wherewolf and the booking system to manage guest’s bookings and waivers. Guest: the final customer for who a booking is made. Booking: a reservation or booking made for an activity. Activity: is an activity, rental, service or product that can be booked by the guests.",
     "url": "/docs/integrations",
     "relUrl": "/docs/integrations"
   },
-  "16": {
-    "id": "16",
+  "17": {
+    "id": "17",
     "title": "Objectives",
     "content": "Objectives There are three main objectives when integrating your booking system with Wherewolf, being: Obtain guest data submitted in the booking process in order to avoid repetition by “pre-filling” waiver questions and speeding up the check-in. Use guest email address (supplied in the booking) to automatically send a pre-arrival link email to the guest, allowing waiver completion prior to arrival (speeding up onsite check-in, reducing queues and improving guest convenience). React to booking changes where amendments might be required before guest arrival. Send waivers or guest details back to the booking system after check-in is completed (2-way integration).",
     "url": "/docs/integrations/objectives.html",
     "relUrl": "/docs/integrations/objectives.html"
   },
-  "17": {
-    "id": "17",
+  "18": {
+    "id": "18",
     "title": "Obtaining API Key",
     "content": "Obtaining an API Key and Pool To interact with the API you will need to first get an API key and a pool reference. The API key is used alongside username as a replacement for the password. The pool indicates the target Wherewolf app for your requests. Get the API key and pool for your user by using the /user/login endpoint. curl -X POST https://api.wherewolf.co.nz/user/login -H &#39;Cache-Control: no-cache&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{ &quot;user&quot;: &quot;your_user_name&quot;, &quot;pass&quot;: &quot;your_password&quot; }&#39; The response will then contain details about your user and the Wherewolf app(s) linked to it. Inside the returned object, you will find the properties key and pool. { ... &quot;key&quot;: &quot;___API___KEY___HERE___&quot;, &quot;pool&quot;: &quot;___POOL___HERE___&quot;, ... } Multiple Apps? If your user is granted with access to multiple apps, you will find a list of these inside poolsAvailableComplete. { ... &quot;key&quot;: &quot;___API___KEY___HERE___&quot;, &quot;pool&quot;: &quot;___DEFAULT___POOL___HERE___&quot;, ... &quot;poolsAvailableComplete&quot;: [ { &quot;pool&quot;: &quot;ABC123&quot;, &quot;poolName&quot;: &quot;One App&quot; }, { &quot;pool&quot;: &quot;ABC123&quot;, &quot;poolName&quot;: &quot;Another App&quot; } ... } Note: All API interactions are performed against one Wherewolf App (defined within the request). This means that if (as an example) you are trying to get a list of guests from multiple Apps, you will be required to perform multiple calls. Also have in mind that it is not common to have users with access granted to multiple Wherewolf Apps, this is reserved to a few special cases.",
     "url": "/docs/api/obtaining_API_key.html",
     "relUrl": "/docs/api/obtaining_API_key.html"
   },
-  "18": {
-    "id": "18",
+  "19": {
+    "id": "19",
     "title": "Payload Details",
     "content": "Payload details Webhook calls may differ from client to client, and the fields to be exposed and included in the call will be defined in a case by case scenario. Available fields, their data types and the reasons behind why they should be included in a webhook call will also be discussed in a case by case scenario.",
     "url": "/docs/webhooks/payload.html",
     "relUrl": "/docs/webhooks/payload.html"
   },
-  "19": {
-    "id": "19",
+  "20": {
+    "id": "20",
     "title": "Requirements",
     "content": "Requests and format All exchange of data is made using JSON and standard HTTP requests to API endpoints. All datetimes are to be expressed in UTC. Your booking system should provide An API key, to grant access to your booking system API. Client’s shortcode or Id that identifies one client from others inside the booking system. The endpoints described in Expected endpoints. The webhook calls described in Expected webhooks.",
     "url": "/docs/integrations/requirements.html",
     "relUrl": "/docs/integrations/requirements.html"
   },
-  "20": {
-    "id": "20",
+  "21": {
+    "id": "21",
     "title": "Trigger Test Calls",
     "content": "Trigger Test Calls In order to receive webhook calls you need to check-in guests or update them. Once your endpoint has been configured under a Wherewolf app, you will be able to trigger test calls by checking in guests on the configured app.",
     "url": "/docs/webhooks/trigger_tests.html",
     "relUrl": "/docs/webhooks/trigger_tests.html"
   },
-  "21": {
-    "id": "21",
+  "22": {
+    "id": "22",
     "title": "Expected webhooks",
     "content": "Expected Webhook calls Booking Created or Updated, all new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details. Note: already checked-in guests will not have their details updated.",
     "url": "/docs/integrations/webhooks.html",
     "relUrl": "/docs/integrations/webhooks.html"
   },
-  "22": {
-    "id": "22",
+  "23": {
+    "id": "23",
     "title": "Webhooks",
     "content": "Webhooks Wherewolf apps can be configured to issue webhook requests to external services. When enabled, a POST request will be issued every time a guest record is created or updated. A guest record is created every time a guest signs a Pre Arrival form or waiver. A guest record is updated when the check-in process happens in multiple stages and/or when a staff member perform some action on it such as assign some equipment or place some internal note. Requirements You need to provide an url that accepts a POST request with Content-Type: application/json",
     "url": "/docs/webhooks",

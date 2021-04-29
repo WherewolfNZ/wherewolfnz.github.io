@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Trigger Test Calls - Wherewolf</title>
+  <title>Healthcheck & Credentials validation - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -32,7 +32,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/404.html" class="navigation-list-link"></a>
             
@@ -88,7 +88,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/integrations" class="navigation-list-link">Booking Systems Integrations</a>
             
@@ -162,7 +162,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="/docs/integrations/endpoints.html" class="navigation-list-link">Expected endpoints</a>
                       
@@ -220,8 +220,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="/docs/integrations/endpoints/healthcheck.html" class="navigation-list-link">Healthcheck & Credentials validation</a>
+                              <li class="navigation-list-item  active">
+                                <a href="/docs/integrations/endpoints/healthcheck.html" class="navigation-list-link active">Healthcheck & Credentials validation</a>
                               </li>
                             
                           
@@ -337,7 +337,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/docs/webhooks" class="navigation-list-link">Webhooks</a>
             
@@ -403,9 +403,9 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
-                      <a href="/docs/webhooks/trigger_tests.html" class="navigation-list-link active">Trigger Test Calls</a>
+                      <a href="/docs/webhooks/trigger_tests.html" class="navigation-list-link">Trigger Test Calls</a>
                       
                     </li>
                   
@@ -556,19 +556,57 @@
             <nav class="breadcrumb-nav">
               <ol class="breadcrumb-nav-list">
                 
-                  <li class="breadcrumb-nav-list-item"><a href="/docs/webhooks">Webhooks</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Booking Systems Integrations</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations/endpoints.html">Expected endpoints</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Trigger Test Calls</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Healthcheck & Credentials validation</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <p><strong>Trigger Test Calls</strong></p>
+          <p><strong>Healthcheck &amp; Credentials validation</strong></p>
 
-<p>In order to receive webhook calls you need to check-in guests or update them.</p>
+<p>To ensure a Wherewolf app has been correctly configured to access your booking system API, an endpoint to validate the access key and company details must be provided.</p>
 
-<p>Once your endpoint has been configured under a Wherewolf app, you will be able to trigger test calls by checking in guests on the configured app.</p>
+<p>Parameters:</p>
+<ul>
+  <li><code class="highlighter-rouge">client</code> string to identify the client to validate.</li>
+</ul>
+
+<p>Headers:</p>
+<ul>
+  <li><code class="highlighter-rouge">API-key</code> API key to allow the request.</li>
+</ul>
+
+<p>Request example</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET \
+  __BOOKING_SYSTEM_API__/healthcheck?client=clientcode123 \
+  -H 'API-key: 123-123-123-123'
+</code></pre></div></div>
+<p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API</em></p>
+
+<p>The response should return a <code class="highlighter-rouge">401</code> when the provided API key does not have access to the requested client.
+And it should return an object containing the following client properties when access is valid:</p>
+<ul>
+  <li><code class="highlighter-rouge">companyName</code> The name of the client company. Example: <code class="highlighter-rouge">Wherewolf Adventures</code>.</li>
+  <li>
+    <p><code class="highlighter-rouge">timezone</code> the timezone on which the client company operates. Example: <code class="highlighter-rouge">Pacific/Auckland</code>.</p>
+
+    <p><em><strong>Important!</strong></em></p>
+
+    <p>The <strong>timezone</strong> your booking system API returns in this health check is only to validate Wherewolf and your systems are configured in the same way. 
+  All booking dates <strong>MUST be expressed in UTC</strong>. 
+  The timezone returned in this endpoint <strong>DOES NOT have any effects on booking dates</strong>.</p>
+  </li>
+</ul>
+
+<p>Response example</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"companyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wherewolf Adventures"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pacific/Auckland"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 
 
