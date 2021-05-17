@@ -590,7 +590,7 @@
 <p>The response is expected to return an object containing at least two properties:</p>
 <ul>
   <li><code class="highlighter-rouge">activities</code> an array of activity objects, where each object should at least contain the name of the activity and it’s internal id or code.</li>
-  <li><code class="highlighter-rouge">last</code> a boolean flag to indicate if all activities have been returned of if a pagination is in place. When set to false, Wherewolf will execute a subsequent call with <code class="highlighter-rouge">skip</code> set to be the number of already retrieved activities <code class="highlighter-rouge">skip += activities.length</code>.</li>
+  <li><code class="highlighter-rouge">more</code> a boolean flag to indicate if there are more activities available to be retrieved with pagination. When set to <code class="highlighter-rouge">true</code>, Wherewolf will execute a subsequent call with <code class="highlighter-rouge">skip</code> set to be the number of already retrieved activities <code class="highlighter-rouge">skip += bookings.length</code>.</li>
 </ul>
 
 <p>Response example</p>
@@ -600,7 +600,7 @@
         </span><span class="p">{</span><span class="w"> </span><span class="s2">"activityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIVE1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dive"</span><span class="w"> </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w"> </span><span class="s2">"activityId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JMP"</span><span class="p">,</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jump"</span><span class="w"> </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"last"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="s2">"more"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
