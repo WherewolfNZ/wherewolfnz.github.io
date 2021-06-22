@@ -86,7 +86,7 @@
   "12": {
     "id": "12",
     "title": "Flow of information",
-    "content": "Flow of information Wherewolf will regularly fetch a list of bookings for a time frame from the booking system API. This list is used to fill the list of expected guests for a day and to fill a calendar that helps with operations. Learn more about this on Bookings endpoint. To speed up this process, the booking system provider can execute a Webhook call to notify Wherewolf about new or updated bookings. Learn more on Booking Created or Updated webhook. Once a guest has finished the check-in process, Wherewolf will execute a Webhook call back to the booking system API in order to share the guest details captured by the check-in process. Learn more on Guest update endpoint.",
+    "content": "Flow of information Wherewolf will regularly fetch a list of bookings for a time frame from the booking system API. This list is used to fill the list of expected guests for a day and to fill a calendar that helps with operations. Learn more about this on Bookings endpoint. To speed up this process, the booking system provider can execute a Webhook call to notify Wherewolf about new or updated bookings. Learn more on Booking Created or Updated webhook. Once a guest has finished the check-in process, Wherewolf will inform the booking system that a waiver has been signed by executing a webhook call. Learn more on Guest update endpoint.",
     "url": "/docs/integrations/flow.html",
     "relUrl": "/docs/integrations/flow.html"
   },
