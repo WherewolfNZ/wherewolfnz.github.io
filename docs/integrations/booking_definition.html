@@ -586,19 +586,21 @@
         <div id="main-content" class="page-content" role="main">
           <p><strong>What is a booking?</strong></p>
 
-<p>For the purposes of an integration with Wherewolf, a booking is a <code class="highlighter-rouge">json</code> object that describes <code class="highlighter-rouge">who</code> booked <code class="highlighter-rouge">what</code> and <code class="highlighter-rouge">when</code>.</p>
+<p>A booking is the arrangement that you make when you book something such as a hotel room, a table at a restaurant, a theatre seat, or a place on public transport. <a href="https://www.collinsdictionary.com/dictionary/english/booking">Collins English Dictionary</a></p>
+
+<p>For the purposes of an integration with Wherewolf, a booking is a <code class="highlighter-rouge">JSON</code> object that describes <code class="highlighter-rouge">who</code> booked <code class="highlighter-rouge">what</code> and <code class="highlighter-rouge">when</code>.</p>
 
 <p>In other words, a booking is the <strong>expectation</strong> that <strong>someone</strong> will get or do <strong>something</strong> at an agreed <strong>date and time</strong></p>
 
-<p>Find the structure of this <code class="highlighter-rouge">json</code> object on <a href="/docs/integrations/endpoints/booking_details.html">Bookings Details endpoint</a>.</p>
+<p>Find the structure of this <code class="highlighter-rouge">JSON</code> object on <a href="/docs/integrations/endpoints/booking_details.html">Bookings Details endpoint</a>.</p>
 
-<p><strong>Who is the booking for?</strong></p>
+<p><strong>WHO - Who is the booking for?</strong></p>
 
 <p>A booking needs to define <code class="highlighter-rouge">who</code> benefits from it. It could be one or multiple persons, they are known as <code class="highlighter-rouge">guests</code>.</p>
 
 <p>The total number of <code class="highlighter-rouge">guests</code> is known as <code class="highlighter-rouge">pax</code>.</p>
 
-<p><strong>What is being booked?</strong></p>
+<p><strong>WHAT - What is being booked?</strong></p>
 
 <p>A booking must also define <code class="highlighter-rouge">what</code> the <code class="highlighter-rouge">guests</code> booked. This is a product or service and could be anything from a guided tour to a rental kayak.</p>
 
@@ -606,17 +608,13 @@
 
 <p>For the purposes of Wherewolf’s API this is known as <code class="highlighter-rouge">activities</code>.</p>
 
-<p><strong>When is booked for?</strong></p>
+<p><strong>WHEN - When is the booking due?</strong></p>
 
 <p>Bookings, are expectations. A <code class="highlighter-rouge">guest</code> is expected to get or do <code class="highlighter-rouge">something</code> at some point in the future.</p>
 
 <p>This point in time is the pillar of a booking, <strong>bookings must define a point in time</strong>.</p>
 
 <p>A booking can define <strong>only one date and time</strong>. If someone needs to book multiple dates, these are by definition multiple bookings.</p>
-
-<p><strong>Official English definition</strong></p>
-
-<p>A booking is the arrangement that you make when you book something such as a hotel room, a table at a restaurant, a theatre seat, or a place on public transport. <a href="https://www.collinsdictionary.com/dictionary/english/booking">Collins English Dictionary</a></p>
 
 
 
