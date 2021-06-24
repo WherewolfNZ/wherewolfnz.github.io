@@ -591,17 +591,18 @@
 
 <p>Parameters:</p>
 <ul>
-  <li><code class="highlighter-rouge">id</code> string or integer to indicate the required booking, either to be included as part of the path <code class="highlighter-rouge">bookings/ABC123</code>  or as a query parameter <code class="highlighter-rouge">booking?id=ABC123</code></li>
+  <li><code class="highlighter-rouge">id</code> string or integer to indicate the required booking, either to be included as part of the path <code class="highlighter-rouge">bookings/ABC123</code>  or as a query parameter <code class="highlighter-rouge">bookings?id=ABC123</code></li>
+  <li><code class="highlighter-rouge">pool</code> string to identify the Wherewolf app requesting the booking details.</li>
 </ul>
 
 <p>Headers:</p>
 <ul>
-  <li><code class="highlighter-rouge">API-key</code> API key to allow the request.</li>
+  <li><code class="highlighter-rouge">API-key</code> API key to authenticate the request.</li>
 </ul>
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET \
-  __BOOKING_SYSTEM_API__/bookings/ABC123 \
+  __BOOKING_SYSTEM_API__/bookings?id=ABC123&amp;pool=wherewfolapp123 \
   -H 'API-key: 123-123-123-123'
 </code></pre></div></div>
 <p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API</em></p>
@@ -611,6 +612,7 @@
   <li><code class="highlighter-rouge">id</code> identifier the booking</li>
   <li><code class="highlighter-rouge">status</code> the booking status. <a href="/docs/integrations/booking_status.html">Check the supported statuses here</a>.</li>
   <li><code class="highlighter-rouge">startsAt</code> the start date and time of the booked activity. In UTC ISO 8601.</li>
+  <li><code class="highlighter-rouge">endsAt</code> the end date and time of the booked activity. In UTC ISO 8601.</li>
   <li><code class="highlighter-rouge">activities</code> an array describing the booked activities.</li>
   <li><code class="highlighter-rouge">contact</code> an object containing the name and email address of the main guest.</li>
   <li><code class="highlighter-rouge">pax</code> an integer to indicate how many guests are expected to be checked-in for this booking.</li>

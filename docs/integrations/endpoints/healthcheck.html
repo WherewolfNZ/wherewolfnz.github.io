@@ -587,29 +587,30 @@
         <div id="main-content" class="page-content" role="main">
           <p><strong>Healthcheck &amp; Credentials validation</strong></p>
 
-<p>To ensure a Wherewolf app has been correctly configured to access your booking system API, an endpoint to validate the access key and company details must be provided.</p>
+<p>To ensure a Wherewolf app has been correctly configured to access your booking system API, an endpoint to validate the access key and configuration should be provided.</p>
 
 <p>Parameters:</p>
 <ul>
-  <li><code class="highlighter-rouge">client</code> string to identify the client to validate.</li>
+  <li><code class="highlighter-rouge">pool</code> string to identify the Wherewolf app to validate.</li>
 </ul>
 
 <p>Headers:</p>
 <ul>
-  <li><code class="highlighter-rouge">API-key</code> API key to allow the request.</li>
+  <li><code class="highlighter-rouge">API-key</code> API key to authenticate the request.</li>
 </ul>
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X GET \
-  __BOOKING_SYSTEM_API__/healthcheck?client=clientcode123 \
+  __BOOKING_SYSTEM_API__/healthcheck?pool=wherewfolapp123 \
   -H 'API-key: 123-123-123-123'
 </code></pre></div></div>
 <p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API</em></p>
 
-<p>The response should return a <code class="highlighter-rouge">401</code> when the provided API key does not have access to the requested client.
-And it should return an object containing the following client properties when access is valid:</p>
+<p>The response should return a <code class="highlighter-rouge">401</code> when there is no matching configuration for the Wherewolf app or when the API key is not allowed to access the resources of the configured Wherewolf app.</p>
+
+<p>When the request is valid, the response should be an object containing the following properties:</p>
 <ul>
-  <li><code class="highlighter-rouge">companyName</code> The name of the client company. Example: <code class="highlighter-rouge">Wherewolf Adventures</code>.</li>
+  <li><code class="highlighter-rouge">companyName</code> The name of the mutual client company. Example: <code class="highlighter-rouge">Wherewolf Adventures</code>.</li>
   <li>
     <p><code class="highlighter-rouge">timezone</code> the timezone on which the client company operates. Example: <code class="highlighter-rouge">Pacific/Auckland</code>.</p>
 
