@@ -608,8 +608,6 @@
   <li><code class="highlighter-rouge">guest.id</code> the Wherewolf guest/waiver id, will be unique across all guests (you can use it to detect update calls).</li>
   <li><code class="highlighter-rouge">guest.pool</code> is the ID used by Wherewolf to identify a Wherewolf app.</li>
   <li><code class="highlighter-rouge">guest.bookingId</code> the booking id.</li>
-  <li><code class="highlighter-rouge">guest.name</code> full name of the guest (when available).</li>
-  <li><code class="highlighter-rouge">guest.email</code> email address (when available).</li>
   <li><code class="highlighter-rouge">guest.lastVisit</code> the date and time of the activity/activities the guest is checking-in. UTC ISO 8601.</li>
   <li><code class="highlighter-rouge">guest.status</code> indicates the current guest status. Checked In, Active, Deleted, Ineligible.</li>
   <li><code class="highlighter-rouge">guest.updatedAt</code> the date and time of the last update stored for this record. UTC ISO 8601.</li>
@@ -628,8 +626,6 @@
             "id": "abcdefg1234567890",
             "pool": "qwerty123",
             "bookingId": "ABC123",
-            "name": "John Smith",
-            "email": "jsmith@email.net",
             "lastVisit": "2018-01-27T11:27:00.000Z",
             "status": "Checked In",
             "updatedAt": "2018-01-27T11:21:33.444Z"
@@ -655,41 +651,6 @@
 <p>By default, Wherewolf won’t send these unless deemed necessary for your use case.</p>
 
 <p>Have in mind, clients enabling an integration will need to agree on what details can and should be shared.</p>
-
-<p><strong>Available Standard Properties</strong></p>
-
-<p>This list contains only some available properties, if you don’t find the one you are looking for please contact us.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Format</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>name</td>
-      <td>String</td>
-      <td>Forename Surname</td>
-      <td>Guest’s full name.</td>
-    </tr>
-    <tr>
-      <td>email</td>
-      <td>String</td>
-      <td>user@domain.ext</td>
-      <td>email address.</td>
-    </tr>
-    <tr>
-      <td>DOB</td>
-      <td>String</td>
-      <td>YYYY-MM-DD</td>
-      <td>Date of birth.</td>
-    </tr>
-  </tbody>
-</table>
 
 
 
