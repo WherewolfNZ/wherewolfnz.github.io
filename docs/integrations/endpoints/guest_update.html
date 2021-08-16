@@ -608,14 +608,13 @@
   <li><code class="highlighter-rouge">guest.id</code> the Wherewolf guest/waiver id, will be unique across all guests (you can use it to detect update calls).</li>
   <li><code class="highlighter-rouge">guest.pool</code> is the ID used by Wherewolf to identify a Wherewolf app.</li>
   <li><code class="highlighter-rouge">guest.bookingId</code> the booking id.</li>
-  <li><code class="highlighter-rouge">guest.name</code> full name of the guest.</li>
-  <li><code class="highlighter-rouge">guest.email</code> email address.</li>
+  <li><code class="highlighter-rouge">guest.name</code> full name of the guest (when available).</li>
+  <li><code class="highlighter-rouge">guest.email</code> email address (when available).</li>
   <li><code class="highlighter-rouge">guest.lastVisit</code> the date and time of the activity/activities the guest is checking-in. UTC ISO 8601.</li>
   <li><code class="highlighter-rouge">guest.status</code> indicates the current guest status. Checked In, Active, Deleted, Ineligible.</li>
 </ul>
 
-<p>Other properties:
-The process of check-in might capture other details from the guest, such as “Where did you hear about us”, all other captured properties will be also included in the request body <code class="highlighter-rouge">whereDidYouHearAboutUs: "Facebook"</code></p>
+<p><em><strong>Note:</strong> Other properties may be available depending on use cases, check the “Other Properties” down on this page</em></p>
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST \
@@ -625,12 +624,13 @@ The process of check-in might capture other details from the guest, such as “W
   -d '{
         "guest": { 
             "remoteId": "G333",
+            "updatedAt": "2018-01-27T11:21:33.444Z",
             "id": "abcdefg1234567890",
             "pool": "qwerty123",
             "bookingId": "ABC123",
             "name": "John Smith",
             "email": "jsmith@email.net",
-            "lastVisit": "2018-01-27T11:27:00",
+            "lastVisit": "2018-01-27T11:27:00.000Z",
             "status": "Checked In",
         }
     }'
@@ -642,6 +642,39 @@ The process of check-in might capture other details from the guest, such as “W
     </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+
+<p><strong>Other Properties</strong></p>
+
+<p>Depending on the use case, the process of check-in may capture other details from the guest, such as “Date Of Birth” or “Where did you hear about us”.</p>
+
+<p>When extra properties are available, these <strong>could be</strong> included in the payload.</p>
+
+<p>When setting up your integration, you will need to decide and define what “Other Properties” may be of use for your clients (if any).</p>
+
+<p>By default, Wherewolf won’t send these unless deemed necessary for your use case.</p>
+
+<p>Have in mind, clients enabling an integration will need to agree on what details can and should be shared.</p>
+
+<p><strong>Available Properties</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Format</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DOB</td>
+      <td>String</td>
+      <td>YYYY-MM-DD</td>
+      <td>Date of birth.</td>
+    </tr>
+  </tbody>
+</table>
 
 
 
