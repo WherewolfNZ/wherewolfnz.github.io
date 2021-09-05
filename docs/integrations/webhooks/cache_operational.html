@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Guest Update - Wherewolf</title>
+  <title>Booking Created or Updated (operational) - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -172,7 +172,7 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
                       <a href="/docs/integrations/endpoints.html" class="navigation-list-link">Expected endpoints</a>
                       
@@ -244,8 +244,8 @@
                             
                           
                             
-                              <li class="navigation-list-item  active">
-                                <a href="/docs/integrations/endpoints/guest_update.html" class="navigation-list-link active">Guest Update</a>
+                              <li class="navigation-list-item ">
+                                <a href="/docs/integrations/endpoints/guest_update.html" class="navigation-list-link">Guest Update</a>
                               </li>
                             
                           
@@ -259,7 +259,7 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
                       <a href="/docs/integrations/webhooks.html" class="navigation-list-link">Expected webhooks</a>
                       
@@ -269,8 +269,8 @@
                             
                           
                             
-                              <li class="navigation-list-item ">
-                                <a href="/docs/integrations/webhooks/cache_operational.html" class="navigation-list-link">Booking Created or Updated (operational)</a>
+                              <li class="navigation-list-item  active">
+                                <a href="/docs/integrations/webhooks/cache_operational.html" class="navigation-list-link active">Booking Created or Updated (operational)</a>
                               </li>
                             
                           
@@ -597,79 +597,57 @@
               <ol class="breadcrumb-nav-list">
                 
                   <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Booking Systems Integrations</a></li>
-                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations/endpoints.html">Expected endpoints</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations/webhooks.html">Expected webhooks</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Guest Update</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Booking Created or Updated (operational)</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <p><strong>Guest Update endpoint</strong></p>
+          <p><strong>Booking Created or Updated Webhook</strong></p>
 
-<p>Accepts a <code class="highlighter-rouge">POST</code> call and stores guest’s details as seen fit. Wherewolf will call this endpoint to share the details and status of the guest, this allows your system to store guest details and know if a waiver has been signed.</p>
+<p>All new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details.</p>
 
-<p>After a guest have signed a waiver, or after any other update is performed on a guest record. Wherewolf will execute a <code class="highlighter-rouge">POST</code> call to a Guest Update endpoint on the booking system API.</p>
-
-<p>Parameters (on path or query string):</p>
-<ul>
-  <li><code class="highlighter-rouge">bookingId</code> the booking id</li>
-  <li><code class="highlighter-rouge">id</code> the guest id provided originally with the booking details (if available)</li>
-</ul>
+<p><strong>Note:</strong> already checked-in guests will not have their details updated.</p>
 
 <p>Headers:</p>
 <ul>
-  <li><code class="highlighter-rouge">API-key</code> API key to allow the request.</li>
+  <li><code class="highlighter-rouge">Content-Type: application/json'</code> required to indicate the body structure.</li>
 </ul>
 
 <p>Body:</p>
 <ul>
-  <li><code class="highlighter-rouge">guest.remoteId</code> the guest id provided originally with the booking details (if available)</li>
-  <li><code class="highlighter-rouge">guest.id</code> the Wherewolf guest/waiver id, will be unique across all guests (you can use it to detect update calls).</li>
-  <li><code class="highlighter-rouge">guest.pool</code> is the ID used by Wherewolf to identify a Wherewolf app.</li>
-  <li><code class="highlighter-rouge">guest.bookingId</code> the booking id.</li>
-  <li><code class="highlighter-rouge">guest.lastVisit</code> the date and time of the activity/activities the guest is checking-in. UTC ISO 8601.</li>
-  <li><code class="highlighter-rouge">guest.status</code> indicates the current guest status. Checked In, Active, Deleted, Ineligible.</li>
-  <li><code class="highlighter-rouge">guest.updatedAt</code> the date and time of the last update stored for this record. UTC ISO 8601.</li>
+  <li><code class="highlighter-rouge">id</code> id to indicate the booking to be fetched.</li>
+  <li><code class="highlighter-rouge">key</code> API key provided by Wherewolf.</li>
+  <li><code class="highlighter-rouge">pool</code> string to identify the target Wherewolf app.</li>
 </ul>
-
-<p><em><strong>Note:</strong> Other properties may be available depending on use cases, check the “Other Properties” down on this page</em></p>
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST \
-  __BOOKING_SYSTEM_API__/bookings/ABC123/guests/G333 \
+  https://api.wherewolf.co.nz/integration/cache \
   -H 'Content-Type: application/json' \
-  -H 'API-key: 123-123-123-123' \ 
   -d '{
-        "guest": { 
-            "remoteId": "G333",
-            "id": "abcdefg1234567890",
-            "pool": "qwerty123",
-            "bookingId": "ABC123",
-            "lastVisit": "2018-01-27T11:27:00.000Z",
-            "status": "Checked In",
-            "updatedAt": "2018-01-27T11:21:33.444Z"
-        }
-    }'
+        "id": "ABC123",
+        "key": "api_key_provided_by_wherewolf",
+        "pool": "wherewolf_app_identifier"
+}'
 </code></pre></div></div>
-<p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API</em></p>
 
 <p>Response example</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bookings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ABC123"</span><span class="p">,</span><span class="w">
+            </span><span class="err">...</span><span class="w">
+            </span><span class="s2">"web"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"preArrival"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://web.wherewolf.co.nz/QWER12"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">           
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
-
-<p><strong>Other Standard Properties</strong></p>
-
-<p>Depending on the use case, the process of check-in may capture other details from the guest, such as “Date Of Birth” or “Where did you hear about us”.</p>
-
-<p>When extra properties are available, these <strong>could be</strong> included in the payload.</p>
-
-<p>When setting up your integration, you will need to decide and define what “Other Properties” may be of use for your clients (if any).</p>
-
-<p>By default, Wherewolf won’t send these unless deemed necessary for your use case and with express permission of your client in accordance to privacy regulation.</p>
-
 
 
 

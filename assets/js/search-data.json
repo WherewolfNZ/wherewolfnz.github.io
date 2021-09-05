@@ -64,118 +64,125 @@
   },
   "9": {
     "id": "9",
+    "title": "Booking Created or Updated (operational)",
+    "content": "Booking Created or Updated Webhook All new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details. Note: already checked-in guests will not have their details updated. Headers: Content-Type: application/json&#39; required to indicate the body structure. Body: id id to indicate the booking to be fetched. key API key provided by Wherewolf. pool string to identify the target Wherewolf app. Request example curl -X POST https://api.wherewolf.co.nz/integration/cache -H &#39;Content-Type: application/json&#39; -d &#39;{ &quot;id&quot;: &quot;ABC123&quot;, &quot;key&quot;: &quot;api_key_provided_by_wherewolf&quot;, &quot;pool&quot;: &quot;wherewolf_app_identifier&quot; }&#39; Response example { &quot;success&quot;: true, &quot;bookings&quot;: [ { &quot;id&quot;: &quot;ABC123&quot;, ... &quot;web&quot;: { &quot;preArrival&quot;: &quot;https://web.wherewolf.co.nz/QWER12&quot; } } ] }",
+    "url": "/docs/integrations/webhooks/cache_operational.html",
+    "relUrl": "/docs/integrations/webhooks/cache_operational.html"
+  },
+  "10": {
+    "id": "10",
     "title": "Known caveats and notes",
     "content": "Known caveats and notes A common question we receive from booking systems willing to integrate with Wherewolf is: Why Wherewolf requires a booking details API endpoint if all the booking information could be sent over within the webhook call? Wherewolf hesitance on relying only on webhook calls comes from previous experiences that resulted in extra work required, mainly: Booking systems will queue the update calls (so these can be re issued if/when failed), calls from these queues can get out of order and/or arrive at the same time (specially for systems where the order is confirm in a 1st step and details are optionally added in subsequent steps). Storing a provided booking update timestamp and ignoring calls with older timestamps is a common solution for this scenario when you can ensure calls are arriving one after another, but when calls arrive at the same time to Wherewolf they get assigned to different workers and processed at the same time. Therefore each individual process can’t rely on the timestamp alone anymore causing the need for locks, and a buffer/queue to ensure only one update is executed at any given time. From previous experiences, this added complexity is in general not worth it. Back-fills, when integrating new clients Wherewolf needs to retrieve any already made booking for the near future (commonly one year). Booking systems could expose an endpoint to allow Wherewolf to trigger webhooks for all bookings with future dates, but this does not provide any way to control the flood of calls that a big client could cause. There is no way for Wherewolf to know if there were update calls that never arrived, at the end of the day Wherewolf is responsible on what is being displayed in the iPad at location, and is this the reason why (depending on the integration type) Wherewolf will re-fetch the booking details for the current day (or beyond) on well spaced intervals to ensure consistency against webhook calls.",
     "url": "/docs/integrations/webhooks/caveats.html",
     "relUrl": "/docs/integrations/webhooks/caveats.html"
   },
-  "10": {
-    "id": "10",
+  "11": {
+    "id": "11",
     "title": "Available Endpoints",
     "content": "Available Endpoints There is no public documentation for available endpoints, please contact our support team to discuss your requirements and the best course of action.",
     "url": "/docs/api/endpoints.html",
     "relUrl": "/docs/api/endpoints.html"
   },
-  "11": {
-    "id": "11",
+  "12": {
+    "id": "12",
     "title": "Expected endpoints",
     "content": "Expected API endpoints To allow Wherewolf to retrieve information from your booking system, the following endpoints are required: Bookings, this endpoint returns a list of bookings for a given time period and Wherewolf app. Booking Details, returns all available details for a given booking id. Get Activities, returns a list of activities and their codes (or IDs) for a specified Wherewolf app. Healthcheck &amp; Credentials validation, validates access and returns common properties to validate configuration. To allow Wherewolf to share guest details back to your booking system, an extra endpoint is required (2-way integration): Guest Update, accepts a POST call for each of the guest details Wherewolf is able to capture.",
     "url": "/docs/integrations/endpoints.html",
     "relUrl": "/docs/integrations/endpoints.html"
   },
-  "12": {
-    "id": "12",
+  "13": {
+    "id": "13",
     "title": "Example Call",
     "content": "Example Call curl -X POST __YOUR_URL__ -H &#39;Cache-Control: no-cache&#39; -H &#39;Content-Type: application/json&#39; -H &#39;__CUSTOM_AUTH_FIELD__: __CUSTOM_AUTH_VALUE__&#39; -d &#39;{ guest: { &quot;activities&quot;: [ &quot;PJAX10&quot; ], &quot;createdAt&quot;: &quot;2019-01-21T22:08:03.969Z&quot;, &quot;currentPage&quot;: null, &quot;feedback&quot;: &quot;Great thx&quot;, &quot;lastVisit&quot;: &quot;2019-01-21T22:08:03.899Z&quot;, &quot;pool&quot;: &quot;demo&quot;, &quot;status&quot;: &quot;Active&quot;, &quot;id&quot;: &quot;Dummy9gyrk55an4qi0ds54ck1&quot;, &quot;updatedAt&quot;: &quot;2019-01-21T22:08:03.970Z&quot;, &quot;reservationsID&quot;: null, &quot;reservationsService&quot;: &quot;bookeo&quot; }, }&#39; Where: __YOUR_URL__ is the url of the endpoint you created to receive calls. __CUSTOM_AUTH_FIELD__ and __CUSTOM_AUTH_VALUE__ are values we can set if you require a special header. Example Payload { &quot;guest&quot;: { &quot;activities&quot;: [ &quot;PJAX10&quot; ], &quot;createdAt&quot;: &quot;2019-01-21T22:08:03.969Z&quot;, &quot;currentPage&quot;: null, &quot;feedback&quot;: &quot;Great thx&quot;, &quot;lastVisit&quot;: &quot;2019-01-21T22:08:03.899Z&quot;, &quot;pool&quot;: &quot;demo&quot;, &quot;status&quot;: &quot;Active&quot;, &quot;id&quot;: &quot;Dummy9gyrk55an4qi0ds54ck1&quot;, &quot;updatedAt&quot;: &quot;2019-01-21T22:08:03.970Z&quot;, &quot;reservationsID&quot;: null, &quot;reservationsService&quot;: &quot;bookeo&quot; } } Many other properties may be present in the guest object depending on webhook configuration and the available fields for the Wherewolf app.",
     "url": "/docs/webhooks/example_call.html",
     "relUrl": "/docs/webhooks/example_call.html"
   },
-  "13": {
-    "id": "13",
+  "14": {
+    "id": "14",
     "title": "Flow of information",
     "content": "Flow of information Wherewolf will regularly fetch a list of bookings for a time frame from the booking system API. This list is used to fill the list of expected guests for a day and to fill a calendar that helps with operations. Learn more about this on Bookings endpoint. To speed up this process, the booking system provider can execute a Webhook call to notify Wherewolf about new or updated bookings. Learn more on Booking Created or Updated webhook. Once a guest has finished the check-in process, Wherewolf will inform the booking system that a waiver has been signed by executing a webhook call. Learn more on Guest update endpoint.",
     "url": "/docs/integrations/flow.html",
     "relUrl": "/docs/integrations/flow.html"
   },
-  "14": {
-    "id": "14",
+  "15": {
+    "id": "15",
     "title": "Guest Update",
     "content": "Guest Update endpoint Accepts a POST call and stores guest’s details as seen fit. Wherewolf will call this endpoint to share the details and status of the guest, this allows your system to store guest details and know if a waiver has been signed. After a guest have signed a waiver, or after any other update is performed on a guest record. Wherewolf will execute a POST call to a Guest Update endpoint on the booking system API. Parameters (on path or query string): bookingId the booking id id the guest id provided originally with the booking details (if available) Headers: API-key API key to allow the request. Body: guest.remoteId the guest id provided originally with the booking details (if available) guest.id the Wherewolf guest/waiver id, will be unique across all guests (you can use it to detect update calls). guest.pool is the ID used by Wherewolf to identify a Wherewolf app. guest.bookingId the booking id. guest.lastVisit the date and time of the activity/activities the guest is checking-in. UTC ISO 8601. guest.status indicates the current guest status. Checked In, Active, Deleted, Ineligible. guest.updatedAt the date and time of the last update stored for this record. UTC ISO 8601. Note: Other properties may be available depending on use cases, check the “Other Properties” down on this page Request example curl -X POST __BOOKING_SYSTEM_API__/bookings/ABC123/guests/G333 -H &#39;Content-Type: application/json&#39; -H &#39;API-key: 123-123-123-123&#39; -d &#39;{ &quot;guest&quot;: { &quot;remoteId&quot;: &quot;G333&quot;, &quot;id&quot;: &quot;abcdefg1234567890&quot;, &quot;pool&quot;: &quot;qwerty123&quot;, &quot;bookingId&quot;: &quot;ABC123&quot;, &quot;lastVisit&quot;: &quot;2018-01-27T11:27:00.000Z&quot;, &quot;status&quot;: &quot;Checked In&quot;, &quot;updatedAt&quot;: &quot;2018-01-27T11:21:33.444Z&quot; } }&#39; Where BOOKING_SYSTEM_API is a placeholder for the base url of your booking system’s API Response example { &quot;success&quot;: true } Other Standard Properties Depending on the use case, the process of check-in may capture other details from the guest, such as “Date Of Birth” or “Where did you hear about us”. When extra properties are available, these could be included in the payload. When setting up your integration, you will need to decide and define what “Other Properties” may be of use for your clients (if any). By default, Wherewolf won’t send these unless deemed necessary for your use case and with express permission of your client in accordance to privacy regulation.",
     "url": "/docs/integrations/endpoints/guest_update.html",
     "relUrl": "/docs/integrations/endpoints/guest_update.html"
   },
-  "15": {
-    "id": "15",
+  "16": {
+    "id": "16",
     "title": "Guest Update (operational)",
     "content": "THE FOLLOWING SPECS ARE BASED ON THE CLIENT DISPLAYING THE NAME/EMAIL/DOB IN THE DASHBOARD FOR OPERATIONAL SAFETY USE. Guest Update endpoint (operational safety use) Accepts a POST call and stores guest’s details as seen fit. Wherewolf will call this endpoint to share the details and status of the guest, this allows your system to store guest details and know if a waiver has been signed. After a guest have signed a waiver, or after any other update is performed on a guest record. Wherewolf will execute a POST call to a Guest Update endpoint on the booking system API. Parameters (on path or query string): bookingId the booking id id the guest id provided originally with the booking details (if available) Headers: API-key API key to allow the request. Body: guest.remoteId the guest id provided originally with the booking details (if available) guest.id the Wherewolf guest/waiver id, will be unique across all guests (you can use it to detect update calls). guest.pool is the ID used by Wherewolf to identify a Wherewolf app. guest.bookingId the booking id. guest.lastVisit the date and time of the activity/activities the guest is checking-in. UTC ISO 8601. guest.status indicates the current guest status. Checked In, Active, Deleted, Ineligible. guest.updatedAt the date and time of the last update stored for this record. UTC ISO 8601. Request example curl -X POST __BOOKING_SYSTEM_API__/bookings/ABC123/guests/G333 -H &#39;Content-Type: application/json&#39; -H &#39;API-key: 123-123-123-123&#39; -d &#39;{ &quot;guest&quot;: { &quot;remoteId&quot;: &quot;G333&quot;, &quot;id&quot;: &quot;abcdefg1234567890&quot;, &quot;pool&quot;: &quot;qwerty123&quot;, &quot;bookingId&quot;: &quot;ABC123&quot;, &quot;lastVisit&quot;: &quot;2018-01-27T11:27:00.000Z&quot;, &quot;status&quot;: &quot;Checked In&quot;, &quot;updatedAt&quot;: &quot;2018-01-27T11:21:33.444Z&quot; } }&#39; Where BOOKING_SYSTEM_API is a placeholder for the base url of your booking system’s API Response example { &quot;success&quot;: true } Other Standard Properties Depending on the use case, the process of check-in may capture other details from the guest, such as “Date Of Birth” or “Where did you hear about us”. When extra properties are available, these could be included in the payload. When setting up your integration, you will need to decide and define what “Other Properties” may be of use for your clients (if any). By default, Wherewolf won’t send these unless deemed necessary for your use case and with express permission of your client in accordance to privacy regulation. Standard Properties included for operational safety use Name Type Format Description name String Forename Surname Guest’s full name. email String user@domain.ext email address. DOB String YYYY-MM-DD Date of birth. Request example curl -X POST __BOOKING_SYSTEM_API__/bookings/ABC123/guests/G333 -H &#39;Content-Type: application/json&#39; -H &#39;API-key: 123-123-123-123&#39; -d &#39;{ &quot;guest&quot;: { &quot;remoteId&quot;: &quot;G333&quot;, &quot;id&quot;: &quot;abcdefg1234567890&quot;, &quot;pool&quot;: &quot;qwerty123&quot;, &quot;bookingId&quot;: &quot;ABC123&quot;, &quot;lastVisit&quot;: &quot;2018-01-27T11:27:00.000Z&quot;, &quot;status&quot;: &quot;Checked In&quot;, &quot;updatedAt&quot;: &quot;2018-01-27T11:21:33.444Z&quot;, &quot;name&quot;: &quot;Jhon Smith&quot;, &quot;email&quot;: &quot;example@getwherewolf.com&quot;, &quot;DOB&quot;: &quot;1966-11-25&quot; } }&#39; Where BOOKING_SYSTEM_API is a placeholder for the base url of your booking system’s API Response example { &quot;success&quot;: true }",
     "url": "/docs/integrations/endpoints/guest_update_operational.html",
     "relUrl": "/docs/integrations/endpoints/guest_update_operational.html"
   },
-  "16": {
-    "id": "16",
+  "17": {
+    "id": "17",
     "title": "Healthcheck & Credentials validation",
     "content": "Healthcheck &amp; Credentials validation To ensure a Wherewolf app has been correctly configured to access your booking system API, an endpoint to validate the access key and configuration should be provided. Parameters: pool string to identify the Wherewolf app to validate. Headers: API-key API key to authenticate the request. Request example curl -X GET __BOOKING_SYSTEM_API__/healthcheck?pool=wherewfolapp123 -H &#39;API-key: 123-123-123-123&#39; Where BOOKING_SYSTEM_API is a placeholder for the base url of your booking system’s API The response should return a 401 when there is no matching configuration for the Wherewolf app or when the API key is not allowed to access the resources of the configured Wherewolf app. When the request is valid, the response should be an object containing the following properties: companyName The name of the mutual client company. Example: Wherewolf Adventures. timezone the timezone on which the client company operates. Example: Pacific/Auckland. Important! The timezone your booking system API returns in this health check is only to validate Wherewolf and your systems are configured in the same way. All booking dates MUST be expressed in UTC. The timezone returned in this endpoint DOES NOT have any effects on booking dates. Response example { &quot;companyName&quot;: &quot;Wherewolf Adventures&quot;, &quot;timezone&quot;: &quot;Pacific/Auckland&quot; }",
     "url": "/docs/integrations/endpoints/healthcheck.html",
     "relUrl": "/docs/integrations/endpoints/healthcheck.html"
   },
-  "17": {
-    "id": "17",
+  "18": {
+    "id": "18",
     "title": "Welcome",
     "content": "This site contains technical information on how to interact with Wherewolf. If you are looking for help on how to setup your app, please use the Support Portal.",
     "url": "/",
     "relUrl": "/"
   },
-  "18": {
-    "id": "18",
+  "19": {
+    "id": "19",
     "title": "Booking Systems Integrations",
     "content": "Booking systems integrations Wherewolf is currently integrated with major booking systems, these integrations are made possible by the use of API and Webhook calls. This section outlines the workflow and requirements to successful integrate your booking system with Wherewolf using API and Webhook calls. Glossary Client: the company using Wherewolf and a booking system to manage guest’s bookings and waivers. App: is a Wherewolf app (aka account) configured accordingly to meet the requirements of a client company. pool: is an unique string to identify a Wherewol app. Guest: the final customer for who a booking is made. Booking: a reservation or booking made for an activity. Activity: is an activity, rental, service or product that can be booked by the guests.",
     "url": "/docs/integrations",
     "relUrl": "/docs/integrations"
   },
-  "19": {
-    "id": "19",
+  "20": {
+    "id": "20",
     "title": "Objectives",
     "content": "Objectives There are three main objectives when integrating your booking system with Wherewolf, being: Obtain guest data submitted in the booking process in order to avoid repetition by “pre-filling” waiver questions and speeding up the check-in. Use guest email address (supplied in the booking) to automatically send a pre-arrival link email to the guest, allowing waiver completion prior to arrival (speeding up onsite check-in, reducing queues and improving guest convenience). React to booking changes where amendments might be required before guest arrival. Send waivers or guest details back to the booking system after check-in is completed (2-way integration).",
     "url": "/docs/integrations/objectives.html",
     "relUrl": "/docs/integrations/objectives.html"
   },
-  "20": {
-    "id": "20",
+  "21": {
+    "id": "21",
     "title": "Obtaining API Key",
     "content": "Obtaining an API Key and Pool To interact with the API you will need to first get an API key and a pool reference. The API key is used alongside username as a replacement for the password. The pool indicates the target Wherewolf app for your requests. Get the API key and pool for your user by using the /user/login endpoint. curl -X POST https://api.wherewolf.co.nz/user/login -H &#39;Cache-Control: no-cache&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{ &quot;user&quot;: &quot;your_user_name&quot;, &quot;pass&quot;: &quot;your_password&quot; }&#39; The response will then contain details about your user and the Wherewolf app(s) linked to it. Inside the returned object, you will find the properties key and pool. { ... &quot;key&quot;: &quot;___API___KEY___HERE___&quot;, &quot;pool&quot;: &quot;___POOL___HERE___&quot;, ... } Multiple Apps? If your user is granted with access to multiple apps, you will find a list of these inside poolsAvailableComplete. { ... &quot;key&quot;: &quot;___API___KEY___HERE___&quot;, &quot;pool&quot;: &quot;___DEFAULT___POOL___HERE___&quot;, ... &quot;poolsAvailableComplete&quot;: [ { &quot;pool&quot;: &quot;ABC123&quot;, &quot;poolName&quot;: &quot;One App&quot; }, { &quot;pool&quot;: &quot;ABC123&quot;, &quot;poolName&quot;: &quot;Another App&quot; } ... } Note: All API interactions are performed against one Wherewolf App (defined within the request). This means that if (as an example) you are trying to get a list of guests from multiple Apps, you will be required to perform multiple calls. Also have in mind that it is not common to have users with access granted to multiple Wherewolf Apps, this is reserved to a few special cases.",
     "url": "/docs/api/obtaining_API_key.html",
     "relUrl": "/docs/api/obtaining_API_key.html"
   },
-  "21": {
-    "id": "21",
+  "22": {
+    "id": "22",
     "title": "Payload Details",
     "content": "Payload details Webhook calls may differ depending on the use case, and the fields to be exposed and included in the call will be defined in a case by case scenario. Available fields, their data types and the reasons behind why they should be included in a webhook call will also be discussed in a case by case scenario.",
     "url": "/docs/webhooks/payload.html",
     "relUrl": "/docs/webhooks/payload.html"
   },
-  "22": {
-    "id": "22",
+  "23": {
+    "id": "23",
     "title": "Requirements",
     "content": "Requests and format All exchange of data is made using JSON and standard HTTP requests to API endpoints. All datetimes are to be expressed in UTC. Your booking system should provide An API key, to grant Wherewolf with access to your booking system API. The endpoints described in Expected endpoints. The webhook calls described in Expected webhooks.",
     "url": "/docs/integrations/requirements.html",
     "relUrl": "/docs/integrations/requirements.html"
   },
-  "23": {
-    "id": "23",
+  "24": {
+    "id": "24",
     "title": "Trigger Test Calls",
     "content": "Trigger Test Calls In order to receive webhook calls you need to check-in guests or update them. Once your endpoint has been configured under a Wherewolf app, you will be able to trigger test calls by checking in guests on the configured app.",
     "url": "/docs/webhooks/trigger_tests.html",
     "relUrl": "/docs/webhooks/trigger_tests.html"
   },
-  "24": {
-    "id": "24",
+  "25": {
+    "id": "25",
     "title": "Expected webhooks",
     "content": "Expected Webhook calls Booking Created or Updated, all new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details. Note: already checked-in guests will not have their details updated.",
     "url": "/docs/integrations/webhooks.html",
     "relUrl": "/docs/integrations/webhooks.html"
   },
-  "25": {
-    "id": "25",
+  "26": {
+    "id": "26",
     "title": "Webhooks",
     "content": "Webhooks Wherewolf apps can be configured to issue webhook requests to external services. When enabled, a POST request will be issued every time a guest record is created or updated. A guest record is created every time a guest signs a Pre Arrival form or waiver. A guest record is updated when the check-in process happens in multiple stages and/or when a staff member perform some action on it such as assign some equipment or place some internal note. Requirements You need to provide an url that accepts a POST request with Content-Type: application/json",
     "url": "/docs/webhooks",
