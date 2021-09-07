@@ -633,7 +633,7 @@
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST \
-  __BOOKING_SYSTEM_API__/bookings/ABC123/guests/G333 \
+  __BOOKING_SYSTEM_API__/bookings/ABC123/guests/__GUEST_ID__ \
   -H 'Content-Type: application/json' \
   -H 'API-key: 123-123-123-123' \ 
   -d '{
@@ -648,7 +648,8 @@
         }
     }'
 </code></pre></div></div>
-<p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API</em></p>
+<p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API</em> 
+<em>And <strong>GUEST_ID</strong> if provided, this is the guest id from your system (remoteId), else it is Wherewolf guest.id</em></p>
 
 <p>Response example</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
