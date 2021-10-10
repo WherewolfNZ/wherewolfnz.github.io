@@ -621,7 +621,7 @@
 <p>Body:</p>
 <ul>
   <li><code class="highlighter-rouge">guest.remoteId</code> the guest id provided originally with the booking details (if available)</li>
-  <li><code class="highlighter-rouge">guest.id</code> the Wherewolf guest/waiver id, will be unique across all guests (you can use it to detect update calls).</li>
+  <li><code class="highlighter-rouge">guest.id</code> the Wherewolf guest/waiver id, will be unique across all guests (you can use it to detect update calls). <strong>Be aware</strong> the guest ID is a string with a max of 256 bytes, and it may contain non url safe characters.</li>
   <li><code class="highlighter-rouge">guest.pool</code> is the ID used by Wherewolf to identify a Wherewolf app.</li>
   <li><code class="highlighter-rouge">guest.bookingId</code> the booking id.</li>
   <li><code class="highlighter-rouge">guest.lastVisit</code> the date and time of the activity/activities the guest is checking-in. UTC ISO 8601.</li>
@@ -633,13 +633,13 @@
 
 <p>Request example</p>
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -X POST \
-  __BOOKING_SYSTEM_API__/bookings/ABC123/guests/__GUEST_ID__ \
+  __BOOKING_SYSTEM_API__/bookings/ABC123/guests/__URL_ENCODED_GUEST_ID__ \
   -H 'Content-Type: application/json' \
   -H 'API-key: 123-123-123-123' \ 
   -d '{
         "guest": { 
             "remoteId": "G333",
-            "id": "abcdefg1234567890",
+            "id": "abcdefg-12:30-1234567890#1",
             "pool": "qwerty123",
             "bookingId": "ABC123",
             "lastVisit": "2018-01-27T11:27:00.000Z",
@@ -650,7 +650,7 @@
 </code></pre></div></div>
 <p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API.</em></p>
 
-<p><em>And <strong>GUEST_ID</strong> is the guest id from your system (remoteId) if provided, else it is Wherewolf guest.id</em></p>
+<p><em>And <strong>URL_ENCODED_GUEST_ID</strong> is the guest id from <strong>YOUR</strong> system (remoteId) if/when provided, else it is Wherewolf guest.id (URL encoded in either case)</em></p>
 
 <p>Response example</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
