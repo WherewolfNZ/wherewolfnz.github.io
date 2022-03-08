@@ -625,7 +625,7 @@
   <li><code class="highlighter-rouge">guest.pool</code> is the ID used by Wherewolf to identify a Wherewolf app.</li>
   <li><code class="highlighter-rouge">guest.bookingId</code> the booking id.</li>
   <li><code class="highlighter-rouge">guest.lastVisit</code> the date and time of the activity/activities the guest is checking-in. UTC ISO 8601.</li>
-  <li><code class="highlighter-rouge">guest.status</code> indicates the current guest status. Checked In, Active, Deleted, Ineligible.</li>
+  <li><code class="highlighter-rouge">guest.status</code> indicates the current guest status. Checked In, Active, Finalised, Deleted, Ineligible.</li>
   <li><code class="highlighter-rouge">guest.updatedAt</code> the date and time of the last update stored for this record. UTC ISO 8601.</li>
 </ul>
 
@@ -650,7 +650,7 @@
 </code></pre></div></div>
 <p><em>Where <strong>BOOKING_SYSTEM_API</strong> is a placeholder for the base url of your booking system’s API.</em></p>
 
-<p><em>And <strong>URL_ENCODED_GUEST_ID</strong> is the guest id from <strong>YOUR</strong> system (remoteId) if/when provided, else it is Wherewolf guest.id (URL encoded in either case)</em></p>
+<p><em>And <strong>URL_ENCODED_GUEST_ID</strong> is the guest id from <strong>YOUR</strong> system (remoteId) if/when provided, optionally this can be filled with the Wherewolf guest.id or left empty (URL encoded when present)</em></p>
 
 <p>Response example</p>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
