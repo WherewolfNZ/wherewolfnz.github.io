@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
 
-  <title>Trigger Test Calls - Wherewolf</title>
+  <title>Booking of Groups or Vehicles - Wherewolf</title>
   <link rel="stylesheet" href="/assets/css/just-the-docs.css">
 
   
@@ -84,7 +84,7 @@
     
       
         
-          <li class="navigation-list-item">
+          <li class="navigation-list-item active">
             
             <a href="/docs/integrations" class="navigation-list-link">Booking Systems Integrations</a>
             
@@ -162,9 +162,9 @@
                   
                 
                   
-                    <li class="navigation-list-item ">
+                    <li class="navigation-list-item  active">
                       
-                      <a href="/docs/integrations/booking_groups_and_vehicles.html" class="navigation-list-link">Booking of Groups or Vehicles</a>
+                      <a href="/docs/integrations/booking_groups_and_vehicles.html" class="navigation-list-link active">Booking of Groups or Vehicles</a>
                       
                     </li>
                   
@@ -369,7 +369,7 @@
     
       
         
-          <li class="navigation-list-item active">
+          <li class="navigation-list-item">
             
             <a href="/docs/webhooks" class="navigation-list-link">Webhooks</a>
             
@@ -439,9 +439,9 @@
                   
                 
                   
-                    <li class="navigation-list-item  active">
+                    <li class="navigation-list-item ">
                       
-                      <a href="/docs/webhooks/trigger_tests.html" class="navigation-list-link active">Trigger Test Calls</a>
+                      <a href="/docs/webhooks/trigger_tests.html" class="navigation-list-link">Trigger Test Calls</a>
                       
                     </li>
                   
@@ -612,19 +612,48 @@
             <nav class="breadcrumb-nav">
               <ol class="breadcrumb-nav-list">
                 
-                  <li class="breadcrumb-nav-list-item"><a href="/docs/webhooks">Webhooks</a></li>
+                  <li class="breadcrumb-nav-list-item"><a href="/docs/integrations">Booking Systems Integrations</a></li>
                 
-                <li class="breadcrumb-nav-list-item"><span>Trigger Test Calls</span></li>
+                <li class="breadcrumb-nav-list-item"><span>Booking of Groups or Vehicles</span></li>
               </ol>
             </nav>
           
         
         <div id="main-content" class="page-content" role="main">
-          <p><strong>Trigger Test Calls</strong></p>
+          <p><strong>Booking of Groups or Vehicles</strong></p>
 
-<p>In order to receive webhook calls you need to check-in guests or update them.</p>
+<p>Sometimes the quantity of a booked activity does not match the final number of expected passengers (pax).</p>
 
-<p>Once your endpoint has been configured under a Wherewolf app, you will be able to trigger test calls by checking in guests on the configured app.</p>
+<p>In these cases and depending on the type of activity, the expected number of guests may need to be calculated by multiplying the booked quantity by either a <strong>fix multiplier</strong>, or a <strong>multiplier defined by the booker</strong> (input field).</p>
+
+<p><strong>Example A:</strong></p>
+<blockquote>
+  <p>5x Double Kayaks</p>
+</blockquote>
+
+<p>In this case the <em>fix multiplier</em> would be 2, therefore 5 booked Double Kayaks should allow for up to 10 pax.</p>
+
+<p><strong>Example B:</strong></p>
+<blockquote>
+  <p>1x Forest Guided Group Tour</p>
+</blockquote>
+
+<p>In this other example, the activity may not have a pre-defined number of expected guests and instead the booking system could allow the booker to define the expected guests by completing an extra field ex. “How many people are in your group?”.</p>
+
+<p><strong>Pax calculated at booking system</strong></p>
+
+<p>Ideally, your booking system should translate these scenarios and provide the final number of expected <code class="highlighter-rouge">pax</code> in the <a href="/docs/integrations/endpoints/booking_details.html">booking details</a>.</p>
+
+<p><strong>Pax calculated at Wherewolf</strong></p>
+
+<p>If your booking system is unable to determine the expected or maximum <code class="highlighter-rouge">pax</code> for a booked activity, <strong>please let our team know about this limitation so alternative solutions can be agreed</strong>.</p>
+
+<p>Wherewolf can potentially:</p>
+<ul>
+  <li>Configure a fixed multiplier on defined activities (Kayak scenario).</li>
+  <li>Accept an alternative and final value from a field defined on the booking. (“How many people are in your group?” at top level).</li>
+</ul>
+
 
 
 
