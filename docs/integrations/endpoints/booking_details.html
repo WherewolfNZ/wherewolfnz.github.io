@@ -650,7 +650,7 @@
   <li><code class="highlighter-rouge">startsAt</code> the start date and time of the booked activity. In UTC ISO 8601.</li>
   <li><code class="highlighter-rouge">endsAt</code> the end date and time of the booked activity. In UTC ISO 8601.</li>
   <li><code class="highlighter-rouge">activities</code> an array describing the booked activities.</li>
-  <li><code class="highlighter-rouge">contact</code> an object containing the name and email address of the main guest.</li>
+  <li><code class="highlighter-rouge">contact</code> an object containing the name the main guest or booker, <strong>when available this object would also contain an email address or a phone number</strong>.</li>
   <li><code class="highlighter-rouge">pax</code> an integer to indicate how many guests are expected to be checked-in for this booking.</li>
   <li><code class="highlighter-rouge">guests</code> an array of objects containing any additional details for the expected guests. <strong>Note:</strong> if your system does not support individual guest details or is not required, you can return an empty array.</li>
 </ul>
