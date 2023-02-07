@@ -47,9 +47,9 @@
     "url": "/docs/integrations/endpoints/bookings.html",
     "relUrl": "/docs/integrations/endpoints/bookings.html"
   },"8": {
-    "doc": "Booking Created or Updated",
-    "title": "Booking Created or Updated",
-    "content": "Booking Created or Updated Webhook . All new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details. Note: already checked-in guests will not have their details updated. Headers: . | Content-Type: application/json' required to indicate the body structure. | . Body: . | id id to indicate the booking to be fetched. | key API key provided by Wherewolf. | pool string to identify the target Wherewolf app. | . Request example . curl -X POST \\ https://api.wherewolf.co.nz/integration/cache \\ -H 'Content-Type: application/json' \\ -d '{ \"id\": \"ABC123\", \"key\": \"api_key_provided_by_wherewolf\", \"pool\": \"wherewolf_app_identifier\" }' . Response example . { \"success\": true } . ",
+    "doc": "Booking Created, Updated or Deleted",
+    "title": "Booking Created, Updated or Deleted",
+    "content": "Booking Created or Updated Webhook . All new bookings or any change that affect bookings previously created should trigger a call to a Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details. Cancellations: A cancellation or deletion also needs to trigger a call to Wherewolf, this is required so any pending jobs can be also cancelled. Note: already checked-in guests will not have their details updated. Headers: . | Content-Type: application/json' required to indicate the body structure. | . Body: . | id id to indicate the booking to be fetched. | key API key provided by Wherewolf. | pool string to identify the target Wherewolf app. | . Request example . curl -X POST \\ https://api.wherewolf.co.nz/integration/cache \\ -H 'Content-Type: application/json' \\ -d '{ \"id\": \"ABC123\", \"key\": \"api_key_provided_by_wherewolf\", \"pool\": \"wherewolf_app_identifier\" }' . Response example . { \"success\": true } . ",
     "url": "/docs/integrations/webhooks/cache.html",
     "relUrl": "/docs/integrations/webhooks/cache.html"
   },"9": {
@@ -137,24 +137,30 @@
     "url": "/docs/webhooks/payload.html",
     "relUrl": "/docs/webhooks/payload.html"
   },"23": {
+    "doc": "New Integrations",
+    "title": "New Integrations",
+    "content": "New Integration Process . The following steps are an overview of what the process of integrating your booking system with Wherewolf looks like: . | Integrations between booking systems and Wherewolf are expected to be discussed and agreed before work using this documentation is started. | Once an integration is agreed: . | A Wherewolf developer will be assigned to be available to provide support during the entire process of development, deployment and testing. | In order for Wherewolf to make use of the compatible API endpoints that will be created and then available on the booking system, a companion service must be developed and deployed at Wherewolf. This service will be created and deployed as soon as endpoints are available at the booking system to be used (you are welcome to create placeholders which will allow the service to be deployed while the work is still in progress). | With compatible API endpoints available on the booking system and with the companion service working at Wherewolf, internal testing can begin (once the companion service is available you can use it to help in your development process as long as no real guest information is used). For this, Wherewolf will provide a dev account to be integrated with a dev account in the booking system. | . | Onboarding processes are agreed so both support teams know what are the steps involved when a new mutual client requests integration of their accounts. These steps may vary depending on the level of integration, some booking systems allow their clients to setup the integration themselves while others may require Wherewolf support team to contact them directly to organize any relevant configuration. | After development and internal testing. Live testing can begin with one mutual client. | Public documentation and marketing. | . ",
+    "url": "/docs/integrations/process.html",
+    "relUrl": "/docs/integrations/process.html"
+  },"24": {
     "doc": "Requirements",
     "title": "Requirements",
     "content": "Requests and format . | All exchange of data is made using JSON and standard HTTP requests to API endpoints. | All datetimes are to be expressed in UTC. | . Your booking system should provide . | An API key, to grant Wherewolf with access to your booking system API. | The endpoints described in Expected endpoints. | The webhook calls described in Expected webhooks. | . ",
     "url": "/docs/integrations/requirements.html",
     "relUrl": "/docs/integrations/requirements.html"
-  },"24": {
+  },"25": {
     "doc": "Trigger Test Calls",
     "title": "Trigger Test Calls",
     "content": "Trigger Test Calls . In order to receive webhook calls you need to check-in guests or update them. Once your endpoint has been configured under a Wherewolf app, you will be able to trigger test calls by checking in guests on the configured app. ",
     "url": "/docs/webhooks/trigger_tests.html",
     "relUrl": "/docs/webhooks/trigger_tests.html"
-  },"25": {
+  },"26": {
     "doc": "Expected webhooks",
     "title": "Expected webhooks",
     "content": "Expected Webhook calls . | Booking Created or Updated, all new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details. Note: already checked-in guests will not have their details updated. | . ",
     "url": "/docs/integrations/webhooks.html",
     "relUrl": "/docs/integrations/webhooks.html"
-  },"26": {
+  },"27": {
     "doc": "Webhooks",
     "title": "Webhooks",
     "content": "Webhooks . Wherewolf apps can be configured to issue webhook requests to external services. When enabled, a POST request will be issued every time a guest record is created or updated. A guest record is created every time a guest signs a Pre Arrival form or waiver. A guest record is updated when the check-in process happens in multiple stages and/or when a staff member perform some action on it such as assign some equipment or place some internal note. Requirements . You need to provide an url that accepts a POST request with Content-Type: application/json . ",
