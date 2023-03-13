@@ -1,3 +1,3 @@
 # wherewolfnz.github.io
 
-[wherewolfnz.github.io](wherewolfnz.github.io)
+[https://wherewolfnz.github.io/](https://wherewolfnz.github.io/)
