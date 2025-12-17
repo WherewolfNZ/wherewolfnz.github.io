@@ -7,7 +7,7 @@
   },"1": {
     "doc": "Public API",
     "title": "Public API",
-    "content": "Public API . Clients have access to Wherewolf’s API . Some Considerations . | The Wherewolf API is a RESTful JSON API. | All API calls should be made with HTTP POST. | You can consider any non-200 HTTP response code an error - the returned data will contain more detailed information | All methods are accessed via: https://api.wherewolf.co.nz/SECTION/SOME-METHOD | Request data is passed to the API by POSTing JSON objects to the API endpoints with the appropriate parameters. The documentation for each API call will contain more detail on the parameters accepted by the call. | HTTPS is 100% supported with valid, signed certificates for all API methods. Only HTTPS over 443 is accepted. | . ",
+    "content": "Public API . Operators who own a Wherewolf app have access to Wherewolf’s API . Some Considerations . | The Wherewolf API is a RESTful JSON API. | All API calls should be made with HTTP POST. | You can consider any non-200 HTTP response status code an error. The returned data will contain more detailed information. | All methods are accessed via: https://api.wherewolf.co.nz/SECTION/SOME-METHOD | Request data is passed to the API by POSTing JSON objects to the API endpoints with the appropriate parameters. The documentation for each API call will contain more detail on the parameters accepted by the call. | HTTPS is 100% supported with valid, signed certificates for all API methods. Only HTTPS over 443 is accepted. | . ",
     "url": "/docs/api",
     "relUrl": "/docs/api"
   },"2": {
@@ -71,23 +71,23 @@
     "url": "/docs/integrations/endpoints.html",
     "relUrl": "/docs/integrations/endpoints.html"
   },"12": {
-    "doc": "Available Endpoints",
-    "title": "Available Endpoints",
-    "content": "Available Endpoints . There is no public documentation for available endpoints, please contact our support team to discuss your requirements and the best course of action. ",
-    "url": "/docs/api/endpoints.html",
-    "relUrl": "/docs/api/endpoints.html"
-  },"13": {
     "doc": "Example Call",
     "title": "Example Call",
     "content": "Example Call . curl -X POST \\ __YOUR_URL__ \\ -H 'Cache-Control: no-cache' \\ -H 'Content-Type: application/json' \\ -H '__CUSTOM_AUTH_FIELD__: __CUSTOM_AUTH_VALUE__' \\ -d '{ guest: { \"activities\": [ \"PJAX10\" ], \"createdAt\": \"2019-01-21T22:08:03.969Z\", \"currentPage\": null, \"feedback\": \"Great thx\", \"lastVisit\": \"2019-01-21T22:08:03.899Z\", \"pool\": \"demo\", \"deleted\": false, \"id\": \"Dummy9gyrk55an4qi0ds54ck1\", \"updatedAt\": \"2019-01-21T22:08:03.970Z\", \"reservationsID\": null, \"reservationsService\": \"bookeo\" }, }' . Where: . | __YOUR_URL__ is the url of the endpoint you created to receive calls. | __CUSTOM_AUTH_FIELD__ and __CUSTOM_AUTH_VALUE__ are values we can set if you require a special header. | . Example Payload . { \"guest\": { \"activities\": [ \"PJAX10\" ], \"createdAt\": \"2019-01-21T22:08:03.969Z\", \"currentPage\": null, \"feedback\": \"Great thx\", \"lastVisit\": \"2019-01-21T22:08:03.899Z\", \"pool\": \"demo\", \"deleted\": false, \"id\": \"Dummy9gyrk55an4qi0ds54ck1\", \"updatedAt\": \"2019-01-21T22:08:03.970Z\", \"reservationsID\": null, \"reservationsService\": \"bookeo\" } } . Many other properties may be present in the guest object depending on webhook configuration and the available fields for the Wherewolf app. ",
     "url": "/docs/webhooks/example_call.html",
     "relUrl": "/docs/webhooks/example_call.html"
-  },"14": {
+  },"13": {
     "doc": "Flow of information",
     "title": "Flow of information",
     "content": "Flow of information . Wherewolf will regularly fetch a list of bookings for a time frame from the booking system API. This list is used to fill the list of expected guests for a day and to fill a calendar that helps with operations. Learn more about this on Bookings endpoint. To speed up this process, the booking system provider can execute a Webhook call to notify Wherewolf about new or updated bookings. Learn more on Booking Created or Updated webhook. Once a guest has finished the check-in process, Wherewolf will inform the booking system that a waiver has been signed by executing a webhook call. Learn more on Guest update endpoint. ",
     "url": "/docs/integrations/flow.html",
     "relUrl": "/docs/integrations/flow.html"
+  },"14": {
+    "doc": "Get Guests By Filter endpoint",
+    "title": "Get Guests By Filter endpoint",
+    "content": "Get Guests By Filter endpoint . Returns a list of guests (aka waivers) filtered by the provided parameters. Parameters: . | filter object, the filter to apply to the guests. | filter.dateRange object, the date range to apply to the guests. | filter.dateRange.dateAfter string, the start of the desired time window in UTC ISO 8601. | filter.dateRange.dateBefore string, the end of the desired time window in UTC ISO 8601. | limit number, the maximum number of results to return. | selection string, is either cropped or full. The difference being that cropped placeholders any large fields like signatures, photos, and the Terms and Conditions that were signed, while full returns them in their entirety. | pool string to identify the Wherewolf app making the request. | key string to authenticate the request. | . Request example . curl 'https://api.wherewolf.co.nz/guest/getByFilter' \\ -H 'Accept: application/json' \\ -H 'Content-Type: application/json' \\ --data-raw '{\"filter\":{\"dateRange\":{\"dateAfter\":\"2025-12-16T08:00:00.000Z\",\"dateBefore\":\"2025-12-17T07:59:59.999Z\"}},\"limit\":10000,\"selection\":\"cropped\",\"key\":\"__API_KEY__\",\"pool\":\"__APP_POOL_ID__\"}' . Where API_KEY is a placeholder for your API key and APP_POOL_ID is a placeholder for your app pool id. The response is an array of guests (aka waivers) filtered by the provided parameters. Each guest object contains many properties that may be filled depending on the use case. Some commonly found properties are: . | TMP_id unique identifier of the waiver. | email email of the guest. | status status of the waiver. | pool pool of the waiver. | . ",
+    "url": "/docs/api/get_guests_by_filter.html",
+    "relUrl": "/docs/api/get_guests_by_filter.html"
   },"15": {
     "doc": "Guest Update",
     "title": "Guest Update",
