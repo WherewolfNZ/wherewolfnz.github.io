@@ -1,0 +1,25 @@
+{
+  "id": "ABC_001",
+  "status": "Active",
+  "startsAt": "2020-01-01T11:30:00",
+  "endsAt": "2020-01-01T13:30:00",
+  "bookedSessions": [
+    {
+      "activityId": "SWIM123",
+      "activityName": "Swim",
+      "startsAt": "2020-01-01T11:30:00",
+      "endsAt": "2020-01-01T13:30:00"
+    }
+  ],
+  "contact": {
+    "name": "Purchaser Name",
+    "email": "purchaser@email.net"
+  },
+  "pax": 1,
+  "guests": [
+    {
+      "name": "Booking1 Guest1",
+      "email": "first@email.example"
+    }
+  ]
+}
