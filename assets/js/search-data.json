@@ -187,7 +187,7 @@
   },"31": {
     "doc": "Webhooks",
     "title": "Webhooks",
-    "content": "Note: The current official way of sending date to external services is using Zapier. For more information, please refer to How To Connect Zapier. Webhooks . Wherewolf apps can be configured to issue webhook requests to external services. When enabled, a POST request will be issued every time a guest record is created or updated. A guest record is created every time a guest signs a Pre Arrival form or waiver. A guest record is updated when the check-in process happens in multiple stages and/or when a staff member perform some action on it such as assign some equipment or place some internal note. Requirements . You need to provide an url that accepts a POST request with Content-Type: application/json . ",
+    "content": "Note: The current official way of sending data to external services is using Zapier. For more information, please refer to How To Connect Zapier. Webhooks . Wherewolf apps can be configured to issue webhook requests to external services. When enabled, a POST request will be issued every time a guest record is created or updated. A guest record is created every time a guest signs a Pre Arrival form or waiver. A guest record is updated when the check-in process happens in multiple stages and/or when a staff member perform some action on it such as assign some equipment or place some internal note. Requirements . You need to provide an url that accepts a POST request with Content-Type: application/json . ",
     "url": "/docs/webhooks",
     "relUrl": "/docs/webhooks"
   }
