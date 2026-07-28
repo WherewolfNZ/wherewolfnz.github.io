@@ -167,34 +167,88 @@
     "url": "/docs/integrations/requirements.html",
     "relUrl": "/docs/integrations/requirements.html"
   },"28": {
+    "doc": "Self Service",
+    "title": "Self Service",
+    "content": "Users should be able to configure integrations in a self-service manner. This can either be supported through: . | Your own UI | Dedicated UI section in the Wherewolf dashboard. | “Other Booking Systems” section of the Wherewolf dashboard. | . ",
+    "url": "/docs/integrations/self_service",
+    "relUrl": "/docs/integrations/self_service"
+  },"29": {
+    "doc": "Self Service",
+    "title": "Your Own UI",
+    "content": "Wherewolf provides endpoints that allow you to support self-service in your own UI. ",
+    "url": "/docs/integrations/self_service#your-own-ui",
+    "relUrl": "/docs/integrations/self_service#your-own-ui"
+  },"30": {
+    "doc": "Self Service",
+    "title": "Dedicated UI Section in the Wherewolf Dashboard",
+    "content": "In particular cases, Wherewolf may support a dedicated UI section in the Wherewolf dashboard to configure integrations. This is something that can be discussed with the Wherewolf team. ",
+    "url": "/docs/integrations/self_service#dedicated-ui-section-in-the-wherewolf-dashboard",
+    "relUrl": "/docs/integrations/self_service#dedicated-ui-section-in-the-wherewolf-dashboard"
+  },"31": {
+    "doc": "Self Service",
+    "title": "Other Booking Systems",
+    "content": "When you are developing a new booking system integration, you and your users can use the “Other Booking Systems” section of the Wherewolf dashboard to configure integrations. ",
+    "url": "/docs/integrations/self_service#other-booking-systems",
+    "relUrl": "/docs/integrations/self_service#other-booking-systems"
+  },"32": {
     "doc": "Store Booking Created or Updated (operational)",
     "title": "Store Booking Created or Updated (operational)",
     "content": "THE FOLLOWING SPECS ARE FOR SPECIAL USE CASES AND NOT THE RECOMMENDED WAY TO INTEGRATE. Booking Created or Updated Webhook . All new bookings or any change that affect bookings previously created should trigger a call to a Wherewolf endpoint providing a full booking object, Wherewolf will store the booking details to be used accordingly. Note: already checked-in guests will not have their details updated. Headers: . | Content-Type: application/json' required to indicate the body structure. | . URL: . | POST to https://api.wherewolf.co.nz/integration/storeBooking?type=BOOKING_SYSTEM_TYPE&amp;key=KEY | type is a required string to identify the booking system that is calling. | key API key provided by Wherewolf (optional when present in the body payload). | . Body: . | key API key provided by Wherewolf (optional when present in url as query params). | pool string to identify the target Wherewolf app (optional for Fareharbor payloads). | booking the full booking object. | . Request example . curl -X POST \\ https://api.wherewolf.co.nz/integration/storeBooking?type=BOOKING_SYSTEM_TYPE&amp;key=KEY \\ -H 'Content-Type: application/json' \\ -d '{ \"pool\": \"ABC123\", \"key\": \"api_key_provided_by_wherewolf\", \"booking\": { ... booking object ...} }' . Response example . { \"success\": true, \"bookings\": [ { \"id\": \"ABC123\", ... \"web\": { \"preArrival\": \"https://mono.wherewolf.co.nz/QWER12\" } } ] } . Response structure details: . | success indicates if we were able to process the payload. | bookings is an array that either will contain 1 item to describe the received booking or be empty. A success response with an empty array indicates Wherewolf accepted the booking but the booking is being ignored, some causes for Wherewolf to ignore bookings are: there is no valid configuration for the product/activity of the booking or the booking status does not indicate it is an active and enabled for use. | bookings[0].web.preArrival when present, is the link that participants of the booking can use to sign waivers. This link can be stored by the booking system and then shared with the participants of the booking. NOTE this might not be present if Wherewolf is not configured with the correct TsCs for the activities/products specified in the booking. | bookings[0].web.base when present, is the link that participants of the booking can use to sign waivers. This link can be stored by the booking system and then shared with the participants of the booking. NOTE this might not be present if Wherewolf is not configured with the correct TsCs for the activities/products specified in the booking. | . Pre-arrival links preArrival vs base: . preArrival is the legacy name given to these links, newer apps will return with base instead of preArrival. When base is present, it should be used instead of preArrival. ",
     "url": "/docs/integrations/webhooks/store_booking_operational.html",
     "relUrl": "/docs/integrations/webhooks/store_booking_operational.html"
-  },"29": {
+  },"33": {
     "doc": "Trigger Test Calls",
     "title": "Trigger Test Calls",
     "content": "Trigger Test Calls . In order to receive webhook calls you need to check-in guests or update them. Once your endpoint has been configured under a Wherewolf app, you will be able to trigger test calls by checking in guests on the configured app. ",
     "url": "/docs/webhooks/trigger_tests.html",
     "relUrl": "/docs/webhooks/trigger_tests.html"
-  },"30": {
+  },"34": {
     "doc": "Expected webhooks",
     "title": "Expected webhooks",
     "content": "Expected Webhook calls . | Booking Created or Updated, all new bookings or any change that affect bookings previously created should trigger a call to an Wherewolf endpoint, this will cause Wherewolf to fetch the new or updated details. Note: already checked-in guests will not have their details updated. | . ",
     "url": "/docs/integrations/webhooks.html",
     "relUrl": "/docs/integrations/webhooks.html"
-  },"31": {
+  },"35": {
     "doc": "Webhooks",
     "title": "Webhooks",
     "content": "Note: The current official way of sending data to external services is using Zapier. For more information, please refer to How To Connect Zapier. ",
     "url": "/docs/webhooks",
     "relUrl": "/docs/webhooks"
-  },"32": {
+  },"36": {
     "doc": "Webhooks",
     "title": "Webhooks",
     "content": "Note: The current official way of sending data to external services is using Zapier. For more information, please refer to How To Connect Zapier. Webhooks . Wherewolf apps can be configured to issue webhook requests to external services. When enabled, a POST request will be issued every time a guest record is created or updated. A guest record is created every time a guest signs a Pre Arrival form or waiver. A guest record is updated when the check-in process happens in multiple stages and/or when a staff member perform some action on it such as assign some equipment or place some internal note. Requirements . You need to provide an url that accepts a POST request with Content-Type: application/json . ",
     "url": "/docs/webhooks_original",
     "relUrl": "/docs/webhooks_original"
+  },"37": {
+    "doc": "Your Own UI",
+    "title": "Self Service: Your Own UI",
+    "content": "If you choose to support self-service in your own UI, you can use the following API endpoints to configure integrations: . | POST /integration/install/[YOUR-BOOKING-SYSTEM] | POST /integration/uninstall/[YOUR-BOOKING-SYSTEM] | . Where [YOUR-BOOKING-SYSTEM] is the internal name given to your booking system by Wherewolf. This name will be defined when a new integration is added to the list of Wherewolf supported integrations. ",
+    "url": "/docs/integrations/self_service/your_own_ui#self-service-your-own-ui",
+    "relUrl": "/docs/integrations/self_service/your_own_ui#self-service-your-own-ui"
+  },"38": {
+    "doc": "Your Own UI",
+    "title": "Installation Flow",
+    "content": ". | User opens your booking system’s dashboard and finds an integrations or marketplace option. | User finds the Wherewolf integration, inputs their Wherewolf app pool id and clicks the install button. | Your system executes the API call to install the integration. This call will contain the app pool id provided by the user and any other information that you may want to share with Wherewolf such as account information or fresh api keys. | Wherewolf will store the received details and issue a new API key for the target Wherewolf app pool. | Wherewolf will respond with a success message, webhook url and api key. | Your system will then configure the Wherewolf webhook url in your system and store the api key. | . ",
+    "url": "/docs/integrations/self_service/your_own_ui#installation-flow",
+    "relUrl": "/docs/integrations/self_service/your_own_ui#installation-flow"
+  },"39": {
+    "doc": "Your Own UI",
+    "title": "Global vs App Pool API Keys",
+    "content": "Installation calls made by your system will contain an api key parameter that will be used to identify your system and allow the installation to be completed. The api key for the installation call is a global and unique key that represents your system. After the installation is completed, Wherewolf will issue a new api key for the target app pool. This api key will be unique to the app pool and will be used to identify the app pool and accept the webhook calls your system will make on behalf of the app pool. You need to store the global api key as part of your system level configuration and never exposed. The app pool api key may be stored at account level and used for calls made on behalf of the app pool such as webhook calls. ",
+    "url": "/docs/integrations/self_service/your_own_ui#global-vs-app-pool-api-keys",
+    "relUrl": "/docs/integrations/self_service/your_own_ui#global-vs-app-pool-api-keys"
+  },"40": {
+    "doc": "Your Own UI",
+    "title": "Example Install API Call",
+    "content": "The following is an example of an installation call made to Wherewolf. curl --request POST \\ --url http://localhost:1337/integration/install/fareharbor \\ --header 'content-type: application/json' \\ --data '{ \"key\": \"[YOUR-GLOBAL-INSTALL-API-KEY]\", \"pool\": \"[TARGET-WHEREWOLF-APP-POOL-ID]\", \"accountId\": [ACCOUNT-ID-IN-YOUR-SYSTEM], \"api-key\": [API-KEY-THAT-GRANTS-ACCESS-TO-ACCOUNT-IN-YOUR-SYSTEM] }' . Where: . [YOUR-GLOBAL-INSTALL-API-KEY] is the global api key for your system. [TARGET-WHEREWOLF-APP-POOL-ID] is the id of the app pool you wish to install. [ACCOUNT-ID-IN-YOUR-SYSTEM] is the id of the account in your system. [API-KEY-THAT-GRANTS-ACCESS-TO-ACCOUNT-IN-YOUR-SYSTEM] is the api key you generate that grants access to the account in your system and allows Wherewolf to fetch booking data. ",
+    "url": "/docs/integrations/self_service/your_own_ui#example-install-api-call",
+    "relUrl": "/docs/integrations/self_service/your_own_ui#example-install-api-call"
+  },"41": {
+    "doc": "Your Own UI",
+    "title": "Your Own UI",
+    "content": " ",
+    "url": "/docs/integrations/self_service/your_own_ui",
+    "relUrl": "/docs/integrations/self_service/your_own_ui"
   }
 }
