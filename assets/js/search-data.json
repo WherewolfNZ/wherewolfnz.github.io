@@ -187,7 +187,7 @@
   },"31": {
     "doc": "Self Service",
     "title": "Other Booking Systems",
-    "content": "When you are developing a new booking system integration, you and your users can use the “Other Booking Systems” section of the Wherewolf dashboard to configure integrations. ",
+    "content": "When you are developing a new booking system integration, you and your users can use the “Other Booking Systems” section of the Wherewolf dashboard to configure integrations. Check the documentation here: Other Booking Systems. ",
     "url": "/docs/integrations/self_service#other-booking-systems",
     "relUrl": "/docs/integrations/self_service#other-booking-systems"
   },"32": {
