@@ -241,10 +241,16 @@
   },"40": {
     "doc": "Your Own UI",
     "title": "Example Install API Call",
-    "content": "The following is an example of an installation call made to Wherewolf. curl --request POST \\ --url http://localhost:1337/integration/install/fareharbor \\ --header 'content-type: application/json' \\ --data '{ \"key\": \"[YOUR-GLOBAL-INSTALL-API-KEY]\", \"pool\": \"[TARGET-WHEREWOLF-APP-POOL-ID]\", \"accountId\": [ACCOUNT-ID-IN-YOUR-SYSTEM], \"apiKey\": [API-KEY-THAT-GRANTS-ACCESS-TO-ACCOUNT-IN-YOUR-SYSTEM] }' . Where: . [YOUR-GLOBAL-INSTALL-API-KEY] is the global api key for your system. [TARGET-WHEREWOLF-APP-POOL-ID] is the id of the app pool you wish to install. [ACCOUNT-ID-IN-YOUR-SYSTEM] is the id of the account in your system. [API-KEY-THAT-GRANTS-ACCESS-TO-ACCOUNT-IN-YOUR-SYSTEM] is the api key you generate that grants access to the account in your system and allows Wherewolf to fetch booking data. ",
+    "content": "curl --request POST \\ --url http://localhost:1337/integration/install/[YOUR-BOOKING-SYSTEM] \\ --header 'content-type: application/json' \\ --data '{ \"key\": \"[YOUR-GLOBAL-INSTALL-API-KEY]\", \"pool\": \"[TARGET-WHEREWOLF-APP-POOL-ID]\", \"accountId\": [ACCOUNT-ID-IN-YOUR-SYSTEM], \"apiKey\": [API-KEY-THAT-GRANTS-ACCESS-TO-ACCOUNT-IN-YOUR-SYSTEM] }' . ",
     "url": "/docs/integrations/self_service/your_own_ui#example-install-api-call",
     "relUrl": "/docs/integrations/self_service/your_own_ui#example-install-api-call"
   },"41": {
+    "doc": "Your Own UI",
+    "title": "Example Uninstall API Call",
+    "content": "curl --request POST \\ --url http://localhost:1337/integration/uninstall/[YOUR-BOOKING-SYSTEM] \\ --header 'content-type: application/json' \\ --data '{ \"key\": \"[YOUR-GLOBAL-INSTALL-API-KEY]\", \"pool\": \"[TARGET-WHEREWOLF-APP-POOL-ID]\", \"accountId\": [ACCOUNT-ID-IN-YOUR-SYSTEM], \"apiKey\": [API-KEY-THAT-GRANTS-ACCESS-TO-ACCOUNT-IN-YOUR-SYSTEM] }' . Where: . [YOUR-BOOKING-SYSTEM] is the internal name given to your booking system by Wherewolf. [YOUR-GLOBAL-INSTALL-API-KEY] is the global api key for your system. [TARGET-WHEREWOLF-APP-POOL-ID] is the id of the app pool you wish to install. [ACCOUNT-ID-IN-YOUR-SYSTEM] is the id of the account in your system. [API-KEY-THAT-GRANTS-ACCESS-TO-ACCOUNT-IN-YOUR-SYSTEM] is the api key you generate that grants access to the account in your system and allows Wherewolf to fetch booking data. ",
+    "url": "/docs/integrations/self_service/your_own_ui#example-uninstall-api-call",
+    "relUrl": "/docs/integrations/self_service/your_own_ui#example-uninstall-api-call"
+  },"42": {
     "doc": "Your Own UI",
     "title": "Your Own UI",
     "content": " ",
